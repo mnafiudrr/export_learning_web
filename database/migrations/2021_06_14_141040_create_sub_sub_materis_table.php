@@ -16,7 +16,7 @@ class CreateSubSubMaterisTable extends Migration
         Schema::create('sub_sub_materis', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('sub_materi_id')->nullable();
+            $table->unsignedBigInteger('sub_materi_id')->nullable();
             $table->foreign('sub_materi_id')->references('id')->on('sub_materis');
 
             $table->integer('number')->nullable();

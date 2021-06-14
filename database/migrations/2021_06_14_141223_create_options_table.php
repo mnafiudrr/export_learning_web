@@ -16,10 +16,9 @@ class CreateOptionsTable extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('question_id')->unsigned();
+            $table->unsignedBigInteger('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions');
 
-            $table->text('value');
             $table->boolean('value');
             $table->timestamps();
         });

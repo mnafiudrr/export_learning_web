@@ -19,7 +19,7 @@ class CreateMateriContentsTable extends Migration
             $table->bigInteger('materi_id')->unsigned();
             $table->foreign('materi_id')->references('id')->on('materis');
 
-            $table->bigInteger('content_type_id')->nullable();
+            $table->unsignedBigInteger('content_type_id')->nullable();
             $table->foreign('content_type_id')->references('id')->on('content_types');
             
             $table->text('value')->nullable();
