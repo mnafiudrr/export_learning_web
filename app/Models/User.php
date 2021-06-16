@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Traits\Uuids;
 //JWT
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
+    use Uuids;
+
     use HasFactory, Notifiable;
 
     /**
@@ -20,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $guarded = [
-        'id'
+        
     ];
 
     /**
@@ -32,6 +35,10 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
     ];
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
 
     /**
      * The attributes that should be cast to native types.
@@ -41,6 +48,7 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 
     // Rest omitted for brevity
 

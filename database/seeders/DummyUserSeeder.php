@@ -20,12 +20,6 @@ class DummyUserSeeder extends Seeder
             'role' => 'admin',
             'desc' => 'admin'
         ]);
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
-            'phone_number' => "0811111111",
-            'user_role_id' => 1
-        ]);
+        // \App\Models\User::factory(10)->create();
     }
 }
