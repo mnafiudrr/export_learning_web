@@ -1,5 +1,15 @@
 # Postman Collections
 
-## Authentication Endpoints
+## AGA MASTER COLLECTION
 
-https://www.getpostman.com/collections/741d960d6933a958ff74
+Includes:
+
+-   Auth
+-   Materi (sub, sub sub)
+-   Events
+-   Quises
+-   Masters
+
+Links:
+
+-   https://www.getpostman.com/collections/741d960d6933a958ff74
