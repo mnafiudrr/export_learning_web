@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class QuisSeeder extends Seeder
+class QuestionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,5 @@ class QuisSeeder extends Seeder
      */
     public function run()
     {
-        //
-        \App\Models\Quis::factory(5)->has(\App\Models\Question::factory()->has(\App\Models\Option::factory()->count(4))->count(5))->create();
     }
 }
