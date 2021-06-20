@@ -37,4 +37,14 @@ class SubSubMateriController extends Controller
 
         return response()->json($SubSubMateris, 200);
     }
+
+    public function create()
+    {
+        return view('subsubmateri-create');
+    }
+
+    public function show($id)
+    {
+        return view('subsubmateri-show');
+    }
 }

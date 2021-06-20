@@ -30,4 +30,24 @@ class MateriController extends Controller
 
         return response()->json($materi, 200);
     }
+
+    public function indexMateri()
+    {
+        return view('materi');
+    }
+
+    public function create()
+    {
+        return view('materi-create');
+    }
+
+    public function show($id)
+    {
+        return view('materi-show');
+    }
+
+    public function edit($id)
+    {
+        return view('materi-edit');
+    }
 }
