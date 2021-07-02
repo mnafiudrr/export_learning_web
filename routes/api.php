@@ -85,5 +85,8 @@ Route::prefix('quis')->group(function () {
 
 Route::prefix('event')->group(function () {
     Route::get('/', [EventController::class,'index']);
+    Route::post('/', [EventController::class,'store']);
+    Route::delete('/{id}', [EventController::class,'destroy']);
+
     Route::get('/{id}', [EventController::class,'get']);
 });

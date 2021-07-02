@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Master;
 
+use App\Http\Requests\CreateMasterRequest;
+
 class MasterController extends Controller
 {
     public function getAppLogo()
@@ -14,5 +16,14 @@ class MasterController extends Controller
         $logo = Master::where('name', $BASE_LOGO_DB_NAME)->first()->value;
     
         return response()->json($logo, 200);
+    }
+
+    public function store(CreateMasterRequest $req)
+    {
+        $stored = Master::create($req);
+        return response()->json([
+            'message' => 'success',
+            'data' => $stored
+        ], 200);
     }
 }
