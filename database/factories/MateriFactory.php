@@ -24,6 +24,7 @@ class MateriFactory extends Factory
         return [
             'number' => $this->faker->randomNumber(2),
             'title'  => $this->faker->word(),
+            'header'   => $this->faker->imageUrl(400, 400, 'animals', true),
             'logo'   => $this->faker->imageUrl(400, 400, 'animals', true)
         ];
     }

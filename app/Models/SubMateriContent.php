@@ -9,6 +9,7 @@ class SubMateriContent extends Model
 {
     use HasFactory;
 
+    public $guarded = ['id'];
 
     public function subMateri(): BelongsTo
     {
@@ -23,5 +24,5 @@ class SubMateriContent extends Model
     public function contentType(): BelongsTo
     {
         return $this->belongsTo('App\Models\ContentType', 'type_id', 'id');
-    }    
+    }
 }

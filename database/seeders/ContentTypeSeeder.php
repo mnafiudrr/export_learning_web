@@ -16,8 +16,18 @@ class ContentTypeSeeder extends Seeder
     public function run()
     {
         DB::table('content_types')->insert([
-            'type' => 'paragraf',
-            'desc' => 'paragraf lorem ipsum'
+            'type' => 'text',
+            'desc' => 'paragraf'
+        ]);
+        
+        DB::table('content_types')->insert([
+            'type' => 'image',
+            'desc' => 'image berbentuk jpg/png'
+        ]);
+
+        DB::table('content_types')->insert([
+            'type' => 'link',
+            'desc' => 'link atau url'
         ]);
     }
 }

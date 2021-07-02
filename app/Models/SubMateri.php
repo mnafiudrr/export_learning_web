@@ -11,6 +11,7 @@ class SubMateri extends Model
 {
     use HasFactory;
 
+    public $guarded = ['id'];
     /**
      * Get the materi that owns the SubMateri
      *

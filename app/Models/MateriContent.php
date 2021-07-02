@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class MateriContent extends Model
 {
     use HasFactory;
+
+    public $guarded = ['id'];
     /**
      * Get the materi that owns the MateriContent
      *

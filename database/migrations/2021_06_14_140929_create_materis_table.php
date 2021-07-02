@@ -18,6 +18,7 @@ class CreateMaterisTable extends Migration
             $table->integer('number');
             $table->string('title');
             $table->string('logo');
+            $table->string('header')->default(null);
             $table->timestamps();
         });
     }
