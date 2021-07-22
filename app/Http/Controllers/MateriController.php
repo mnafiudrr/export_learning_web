@@ -9,6 +9,7 @@ use App\Http\Requests\CreateMateriRequest;
 
 use App\Models\Materi;
 use App\Models\MateriContent;
+use App\Models\ContentType;
 
 use Illuminate\Support\Facades\DB;
 
@@ -39,13 +40,16 @@ class MateriController extends Controller
     public function store(CreateMateriRequest $req)
     {
         $payload = collect($req);
+        $materiContentPayload = $payload->get('contents');
+
+
 
 
         $payload['number'] = 1; // Dummy
 
         $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
         
-        $files = $payload->only(['logo','header','photo']);
+        $files = $payload->only(['logo','header'/* ,'photo' */]);
 
 
         /* Current file naming : {filetype}_{timestamps} */
@@ -58,7 +62,8 @@ class MateriController extends Controller
 
 
         $materiPayload = $payload->except(['video_link','photo','isi_paragraf']);
-        $materiContentPayload = $payload->only(['video_link','photo','isi_paragraf']);
+        $materiContentPayload = $payload->get('contents');
+
 
 
         DB::beginTransaction();
@@ -66,31 +71,22 @@ class MateriController extends Controller
         try {
             $materi = Materi::create($materiPayload->toArray());
 
-            foreach ($materiContentPayload as $key => $value) {
-                if ($key === 'isi_paragraf') {
-                    $row = 1;
-
-                    foreach ($value  as  $paragraf) {
-                        # code...
-                        MateriContent::create([
-                            'materi_id' => $materi->id,
-                            'content_type_id' => 1, //text
-                            'value' => $paragraf,
-                            'row' => $row
-                            ]);
-
-                        $row += 1;
-                    }
-                } else {
-                    MateriContent::create([
-                        'materi_id' => $materi->id,
-                         'content_type_id' => 1,
-                         'value' => $value,
-                         'row' => 1
-                    ]);
+            $row = 1;
+            foreach ($materiContentPayload as $content) {
+                $contentTypeId = ContentType::where('type', $content['content_type'])->first()->id;
+                if ($content['content_type'] === 'image') {
+                    $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo'.$timestamps);
                 }
+                MateriContent::create(
+                    [
+                        'materi_id' => $materi->id,
+                        'content_type_id' => $contentTypeId,
+                        'value' => $content['value'],
+                        'row' => $row
+                        ]
+                );
+                $row++;
             }
-            // $materiContents  =
         } catch (\Throwable $th) {
             throw $th;
             DB::rollback();
@@ -101,17 +97,20 @@ class MateriController extends Controller
 
     public function indexMateri()
     {
-        return view('materi');
+        $materis = Materi::all();
+        return view('materi', compact('materis'));
     }
 
     public function create()
     {
-        return view('materi-create');
+        $contentTypes = ContentType::all();
+        return view('materi-create', compact('contentTypes'));
     }
 
     public function show($id)
     {
-        return view('materi-show');
+        $materi = Materi::with('subMateris')->find($id);
+        return view('materi-show', compact('materi'));
     }
 
     public function edit($id)

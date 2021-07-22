@@ -24,12 +24,12 @@ class CreateMateriRequest extends FormRequest
     public function rules()
     {
         return [
-            'logo'   => 'required|image',
-            'header' => 'required|image',
-            'title'  => 'required|string',
-            'video_link' => 'string|url',
-            'photo'     => 'required|image',
-            'isi_paragraf' => 'array'
+            'logo'                      => 'required|image',
+            'header'                    => 'required|image',
+            'title'                     => 'required|string',
+            'contents'                  => 'array',
+            'contents.*.content_type'     => 'required|in:link,image,text',
+            'contents.*.value'            => 'required'
         ];
     }
 }

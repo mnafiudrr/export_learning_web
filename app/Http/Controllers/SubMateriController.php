@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\SubMateri;
 use App\Models\SubMateriContent;
+use App\Models\ContentType;
 
 use App\Http\Requests\CreateSubmateriRequest;
 
@@ -65,13 +66,17 @@ class SubMateriController extends Controller
             $submateri  = SubMateri::create($payload->toArray());
 
 
-            foreach ($payload['isi_paragraf'] as $key => $paragraf) {
-                $row = 1;
+            $row = 1;
+            foreach ($payload['contents'] as  $content) {
+                $contentTypeId = ContentType::where('type', $content['content_type'])->first()->id;
+                if ($content['content_type'] === 'image') {
+                    $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo'.$timestamps);
+                }
                 SubMateriContent::create([
                     'sub_materi_id' => $submateri->id,
-                    'content_type_id' => 1,
-                    'value' => $paragraf,
-                    'row'=> $key+1,
+                    'content_type_id' => $contentTypeId,
+                    'value' => $content['value'],
+                    'row'=> $row,
                 ]);
 
                 $row += 1;
