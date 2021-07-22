@@ -29,5 +29,9 @@ class ContentTypeSeeder extends Seeder
             'type' => 'link',
             'desc' => 'link atau url'
         ]);
+        DB::table('content_types')->insert([
+            'type' => 'doc',
+            'desc' => 'file document dan sejenisnya'
+        ]);
     }
 }

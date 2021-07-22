@@ -43,43 +43,16 @@
                         --}}
                     </div>
                     <div class="form-group">
-                        <label for="foto">Foto</label>
+                        <label for="foto">Logo</label>
                         <input
                             type="file"
                             class="form-control"
                             name="logo"
-                            id="foto"
+                            id="logo"
                         />
                     </div>
-                    <div
-                        class="
-                            d-sm-flex
-                            align-items-center
-                            justify-content-between
-                            mb-4
-                        "
-                    >
-                        <label for="isi_paragraf">Isi Pragaraf</label>
-                        <a
-                            onclick="appendText()"
-                            id="btnAppend"
-                            type="button"
-                            class="
-                                d-none d-sm-inline-block
-                                btn btn-sm btn-primary
-                                shadow-sm
-                            "
-                        >
-                            <i class="fas fa-plus fa-sm text-white-50"></i>
-                        </a>
-                    </div>
-                    <div class="form-group teksarea" id="teksarea">
-                        <textarea
-                            name="isi_paragraf[]"
-                            cols="50"
-                            rows="10"
-                        ></textarea>
-                    </div>
+                    <x-dynamic-dropdown-and-inputs-component section="Sub Materi"/>
+
                     <button type="submit" class="btn btn-primary">
                         Submit
                     </button>
@@ -91,11 +64,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-    $("#btnAppend").click(function () {
-        $("#teksarea").append(
-            "<textarea name='isi_paragraf[]' cols='50' rows='10'></textarea>"
-        );
-    });
-</script>
+<script src="{{mix('js/dynamic-dropdown.js')}}">
+
 @endsection
