@@ -51,6 +51,7 @@ Route::group(
         });
     }
 );
+#---------------------------------------------------------------------
 
 Route::prefix('master')->group(function () {
     Route::get('/app-logo', [MasterController::class,'getAppLogo']);
@@ -80,6 +81,8 @@ Route::prefix('quis')->group(function () {
     Route::get('/{quisId}/questions', [QuestionController::class,'getByQuisId']);
 
     Route::get('/{id}', [QuisController::class,'get']);
+    Route::post('/submit-answer', [QuisController::class,'submitQuis']);
+    
 });
 
 
