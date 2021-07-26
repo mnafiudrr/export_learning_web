@@ -3,7 +3,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Materi {{$materi->title}}</h1>
         <a
-            href="{{ route('materi.edit', 1) }}"
+            href="{{ route('materi.edit', $materi->id) }}"
             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
             ><i class="fas fa-edit fa-sm text-white-50"></i> Edit</a
         >
@@ -20,12 +20,8 @@
                         officia cum provident est sit ipsam minima? Eum, magnam
                         fugiat?
                     </p>
-                    <img
-                        height="20"
-                        width="40"
-                        src="{{$materi->header}}"
-                        alt=""
-                    />
+                    <x-image :imgSrc="$materi->header" />
+
                 </div>
             </div>
         </div>
@@ -35,7 +31,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">List Sub Materi</h1>
             <a
-                href="{{ route('submateri.create') }}"
+                href="/submateri/create?parentId={{$materi->id}}"
                 class="
                     d-none d-sm-inline-block
                     btn btn-sm btn-primary
@@ -58,12 +54,16 @@
                         <thead>
                             <tr>
                                 <th>Sub Materi</th>
+                                <td>Dibuat pada</td>
                                 <th>Aksi</th>
+
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Sub Materi</th>
+                                <td>Dibuat pada</td>
+
                                 <th class="text text-center">Aksi</th>
                             </tr>
                         </tfoot>
@@ -72,11 +72,12 @@
                             <tr>
                                 <td>
                                     <a
-                                        href="{{ route('submateri.show', 1) }}"
+                                        href="/submateri/{{$submateri->id}}?parentId={{$materi->id}}"
                                         style="text-decoration: none"
                                         >{{$submateri->title}}</a
                                     >
                                 </td>
+                                <td>{{$submateri->created_at}}</td>
                                 <td>
                                     <button
                                         class="

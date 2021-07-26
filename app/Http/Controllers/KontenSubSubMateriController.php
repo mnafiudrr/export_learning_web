@@ -23,7 +23,7 @@ class KontenSubSubMateriController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.subsubmateri.subsubmateri-create');
     }
 
     /**
