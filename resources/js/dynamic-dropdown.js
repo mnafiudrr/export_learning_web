@@ -1,9 +1,17 @@
-let i = 0; // Needs index on form array of object , source: https://stackoverflow.com/a/47051011/14169269
+const totalData = $(".content-data-count").data("total");
+
+console.log("total data: ", totalData);
+
+let i = totalData; // Needs index on form array of object , source: https://stackoverflow.com/a/47051011/14169269
 let first;
+
+const dropdowns = $(".dropdown-content-types");
+
+console.log("num of dd", dropdowns.length);
 $("#btnAppend").click(function () {
     const dropdowns = $(".dropdown-content-types");
 
-    const clone = $("#dropdownContentTypes").clone();
+    const clone = $("#dropdownContentTypes0").clone();
     $(clone).change((e) => onContentChange(e));
 
     clone.addClass("my-2");
@@ -19,7 +27,7 @@ $("#btnAppend").click(function () {
 
     $("#btnAppend").before(clone);
 
-    console.log("i", i);
+    console.log("lbl , clone", label, clone);
 
     // console.log("dds", dropdowns);
     // console.log(
@@ -28,7 +36,7 @@ $("#btnAppend").click(function () {
     console.log($(dropdowns[0]));
 });
 function onContentChange(e) {
-    const contentType = e.target.value;
+    const contentType = e.target.value.trim();
 
     console.log("ctype:", contentType);
     let input;

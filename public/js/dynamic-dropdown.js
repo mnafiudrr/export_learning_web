@@ -3,12 +3,16 @@ var __webpack_exports__ = {};
 /*!******************************************!*\
   !*** ./resources/js/dynamic-dropdown.js ***!
   \******************************************/
-var i = 0; // Needs index on form array of object , source: https://stackoverflow.com/a/47051011/14169269
+var totalData = $(".content-data-count").data("total");
+console.log("total data: ", totalData);
+var i = totalData; // Needs index on form array of object , source: https://stackoverflow.com/a/47051011/14169269
 
 var first;
+var dropdowns = $(".dropdown-content-types");
+console.log("num of dd", dropdowns.length);
 $("#btnAppend").click(function () {
   var dropdowns = $(".dropdown-content-types");
-  var clone = $("#dropdownContentTypes").clone();
+  var clone = $("#dropdownContentTypes0").clone();
   $(clone).change(function (e) {
     return onContentChange(e);
   });
@@ -22,7 +26,7 @@ $("#btnAppend").click(function () {
   clone.attr("name", "contents[".concat(i, "][content_type]"));
   $("#btnAppend").before(label);
   $("#btnAppend").before(clone);
-  console.log("i", i); // console.log("dds", dropdowns);
+  console.log("lbl , clone", label, clone); // console.log("dds", dropdowns);
   // console.log(
   // );
 
@@ -30,7 +34,7 @@ $("#btnAppend").click(function () {
 });
 
 function onContentChange(e) {
-  var contentType = e.target.value;
+  var contentType = e.target.value.trim();
   console.log("ctype:", contentType);
   var input;
   var key = $(e.target).data("key");
