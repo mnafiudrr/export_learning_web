@@ -1,0 +1,12 @@
+.editable-image {
+    margin: 2em 0;
+    padding: 0;
+    cursor: pointer;
+    height: 6em;
+    width: 6em;
+    object-fit: cover;
+    &:hover {
+        opacity: 80%;
+    }
+    display: block;
+}

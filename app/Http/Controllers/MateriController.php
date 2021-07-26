@@ -115,6 +115,9 @@ class MateriController extends Controller
 
     public function edit($id)
     {
-        return view('materi-edit');
+
+        $materi = Materi::with('materiContents')->find($id);
+        $contentTypes = ContentType::all();
+        return view('materi-edit',['materi' => $materi, 'contentTypes' => $contentTypes]);
     }
 }

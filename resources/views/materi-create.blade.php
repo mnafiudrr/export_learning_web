@@ -1,7 +1,7 @@
 @extends('partials.master') @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Materi</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Materi</h1>
     </div>
 
     <div class="col-md-6 offset-3">
@@ -18,7 +18,7 @@
             <div class="card-body">
                 <form
                     action="/materi"
-                    method="POST"
+                    method="PUT"
                     enctype="multipart/form-data"
                 >
                     @csrf
@@ -69,7 +69,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script src="{{mix('js/dynamic-dropdown.js')}}">
+<!-- <script src="{{mix('js/dynamic-dropdown.js')}}"> -->
    
 </script>
 @endsection

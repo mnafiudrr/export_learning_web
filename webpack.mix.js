@@ -20,3 +20,5 @@ mix.js("resources/js/app.js", "public/js").postCss(
 );
 
 mix.js("resources/js/dynamic-dropdown.js", "public/js");
+
+mix.sass("resources/scss/editable-image.scss", "public/css");
