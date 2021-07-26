@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +11,7 @@ class SubSubMateri extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
     /**
      * Get the materi that owns the SubMateri
      *

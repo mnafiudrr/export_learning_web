@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +11,7 @@ class SubSubMateriContent extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
     public function subSubMateri(): BelongsTo
     {
         return $this->belongsTo('App\Models\SubSubMateri', 'sub_sub_materi', 'id');
