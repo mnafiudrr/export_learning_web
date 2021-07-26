@@ -1,13 +1,34 @@
-.editable-image {
-  margin: 2em 0;
+.editable-image-container {
+  position: relative;
+  width: 50%;
+}
+.editable-image-container .editable-image {
+  margin: 1em 0 1em 0;
   padding: 0;
   cursor: pointer;
-  height: 6em;
-  width: 6em;
+  height: auto;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: 0.1s ease;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   display: block;
 }
-.editable-image:hover {
+.editable-image-container .editable-image:hover {
   opacity: 80%;
+}
+.editable-image-container .editable-image-text {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+.editable-image-container:hover .editable-image-text {
+  opacity: 1;
 }
