@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMateriRequest;
+use App\Http\Requests\UpdateMateriRequest;
 
 // Models
 
@@ -14,6 +15,8 @@ use App\Models\ContentType;
 use Illuminate\Support\Facades\DB;
 
 use App\Services\ImageService;
+use App\Services\ContentService;
+
 use Carbon\Carbon;
 
 // use App\Models\SubMateri;
@@ -70,23 +73,9 @@ class MateriController extends Controller
         $materi = collect();
         try {
             $materi = Materi::create($materiPayload->toArray());
+            $model = new MateriContent;
 
-            $row = 1;
-            foreach ($materiContentPayload as $content) {
-                $contentTypeId = ContentType::where('type', $content['content_type'])->first()->id;
-                if ($content['content_type'] === 'image') {
-                    $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo'.$timestamps);
-                }
-                MateriContent::create(
-                    [
-                        'materi_id' => $materi->id,
-                        'content_type_id' => $contentTypeId,
-                        'value' => $content['value'],
-                        'row' => $row
-                        ]
-                );
-                $row++;
-            }
+            ContentService::saveContent($model, $materiContentPayload, 'materi', $materi);
         } catch (\Throwable $th) {
             throw $th;
             DB::rollback();
@@ -95,6 +84,50 @@ class MateriController extends Controller
         return $materi;
     }
 
+    public function update(UpdateMateriRequest $req)
+    {
+        $materi = Materi::find($req->materi_id);
+
+        if (!$materi) {
+            return 'not found';
+        }
+        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
+
+        $payload = collect($req);
+        $materiContentPayload = $payload->get('contents');
+
+        if ($req->hasFile('logo')) {
+            dd('emang file ?');
+
+            if (file_exists('/'.$materi->logo)) {
+                dd('exist');
+            }
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+        }
+
+        if ($req->hasFile('header')) {
+            $payload['header'] = ImageService::storeImage($req->header, 'header', 'header'.$timestamps);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $materi->update($payload->toArray());
+            $materi->materiContents()->delete();
+            $model = new MateriContent;
+            ContentService::saveContent($model, $materiContentPayload, 'materi', $materi);
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+        }
+        DB::commit();
+
+        /* Current file naming : {filetype}_{timestamps} */
+
+       
+
+        return $materi;
+    }
     public function indexMateri()
     {
         $materis = Materi::all();
@@ -104,20 +137,19 @@ class MateriController extends Controller
     public function create()
     {
         $contentTypes = ContentType::all();
-        return view('materi-create', compact('contentTypes'));
+        return view('pages.materi.materi-create', compact('contentTypes'));
     }
 
     public function show($id)
     {
         $materi = Materi::with('subMateris')->find($id);
-        return view('materi-show', compact('materi'));
+        return view('pages.materi.materi-show', compact('materi'));
     }
 
     public function edit($id)
     {
-
         $materi = Materi::with('materiContents')->find($id);
         $contentTypes = ContentType::all();
-        return view('materi-edit',['materi' => $materi, 'contentTypes' => $contentTypes]);
+        return view('pages.materi.materi-edit', ['materi' => $materi, 'contentTypes' => $contentTypes]);
     }
 }

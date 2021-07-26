@@ -18,7 +18,7 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('materi-show');
+        return view('pages.materi.materi-show');
     }
 
     public function login()

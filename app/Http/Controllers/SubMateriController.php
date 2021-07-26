@@ -13,6 +13,7 @@ use App\Http\Requests\CreateSubmateriRequest;
 use Illuminate\Support\Facades\DB;
 
 use App\Services\ImageService;
+use App\Services\ContentService;
 
 use Carbon\Carbon;
 
@@ -65,22 +66,8 @@ class SubMateriController extends Controller
         try {
             $submateri  = SubMateri::create($payload->toArray());
 
-
-            $row = 1;
-            foreach ($payload['contents'] as  $content) {
-                $contentTypeId = ContentType::where('type', $content['content_type'])->first()->id;
-                if ($content['content_type'] === 'image') {
-                    $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo'.$timestamps);
-                }
-                SubMateriContent::create([
-                    'sub_materi_id' => $submateri->id,
-                    'content_type_id' => $contentTypeId,
-                    'value' => $content['value'],
-                    'row'=> $row,
-                ]);
-
-                $row += 1;
-            }
+            $model = new SubMateriContent;
+            ContentService::saveContent($model, $payload['contents'], 'sub_materi', $submateri);
         } catch (\Throwable $th) {
             throw $th;
             DB::rollback();
@@ -89,18 +76,56 @@ class SubMateriController extends Controller
 
         return $submateri;
     }
-    public function create()
+
+    public function update(Request $req)
     {
-        return view('submateri-create');
+        // dd($req->all());
+        $submateri = SubMateri::find($req->sub_materi_id);
+        if (!$submateri) {
+            return 'not found';
+        }
+        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
+
+        $payload = collect($req);
+        $materiContentPayload = $payload->get('contents');
+
+        if ($req->hasFile('logo')) {
+            if (file_exists('/'.$submateri->logo)) {
+                dd('exist');
+            }
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+        }
+
+        try {
+            $submateri->update($payload->toArray());
+            $submateri->subMateriContents()->delete();
+            $model = new SubMateriContent;
+            ContentService::saveContent($model, $materiContentPayload, 'sub_materi', $submateri);
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+        }
+        DB::commit();
+        return redirect()->back();
+    }
+    public function create(Request $req)
+    {
+        // dd($req->parentId);
+        $parentId = $req->parentId;
+        return view('pages.submateri.submateri-create', compact('parentId'));
     }
 
     public function show($id)
     {
-        return view('submateri-show');
+        $submateri = SubMateri::with('subSubMateri')->find($id);
+
+
+        return view('pages.submateri.submateri-show', compact('submateri'));
     }
 
     public function edit($id)
     {
-        return view('submateri-edit');
+        $submateri = Submateri::with('subMateriContents')->find($id);
+        return view('pages.submateri.submateri-edit', compact('submateri'));
     }
 }
