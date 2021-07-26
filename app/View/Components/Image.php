@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class EditableImage extends Component
+class Image extends Component
 {
     /**
      * Create a new component instance.
@@ -13,12 +13,11 @@ class EditableImage extends Component
      */
 
     public $imgSrc;
-    public $fileInputName;
-    public $imgId;
 
     public $isSrcUrl;
 
-    public function __construct(String $imgSrc = '', String $imgId, $fileInputName = 'image', $isSrcUrl = false)
+    public $imgId;
+    public function __construct(String $imgSrc = '', $imgId = 'currentImage', $isSrcUrl = false)
     {
         $this->isSrcUrl = $isSrcUrl;
         $this->imgSrc = $imgSrc;
@@ -30,8 +29,6 @@ class EditableImage extends Component
             // my else codes goes
         }
 
-
-        $this->fileInputName = $fileInputName;
         $this->imgId = $imgId;
     }
 
@@ -42,6 +39,6 @@ class EditableImage extends Component
      */
     public function render()
     {
-        return view('components.editable-image');
+        return view('components.image');
     }
 }
