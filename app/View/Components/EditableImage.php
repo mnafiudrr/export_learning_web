@@ -18,7 +18,7 @@ class EditableImage extends Component
 
     public $isSrcUrl;
 
-    public function __construct(String $imgSrc = '', String $imgId, $fileInputName = 'image', $isSrcUrl = false)
+    public function __construct(String $imgId, String $imgSrc = '', $fileInputName = 'image', $isSrcUrl = false)
     {
         $this->isSrcUrl = $isSrcUrl;
         $this->imgSrc = $imgSrc;
