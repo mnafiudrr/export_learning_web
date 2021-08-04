@@ -48,7 +48,7 @@
                         >
                         --}}
                     </div>
-                    <x-dynamic-dropdown-and-inputs-component section="Materi"/>
+                    <x-dynamic-dropdown-and-inputs-component section="Materi" :excludes="['doc']"/>
                     <button type="submit" class="btn btn-primary">
                         Submit
                     </button>

@@ -56,7 +56,13 @@ class SubMateriController extends Controller
         $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
      
         $payload  = collect($req);
-        $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo_'.$timestamps);
+
+        // dd($req->all());
+        if(isset($req->logo) && $req->hasFile('logo'))
+        {
+
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo_'.$timestamps);
+        }
    
    
 

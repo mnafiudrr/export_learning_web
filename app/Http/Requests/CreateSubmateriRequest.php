@@ -26,7 +26,7 @@ class CreateSubmateriRequest extends FormRequest
         return [
             'materi_id' => 'required|integer',
             'title' => 'required|string',
-            'logo'  => 'required|image',
+            // 'logo'  => 'required|image',
             'isi_paragraf' => 'array'
         ];
     }

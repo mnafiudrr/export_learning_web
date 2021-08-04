@@ -28,12 +28,12 @@
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="sub_materi_id" value="{{$submateri->id}}">
-                    <div class="form-group col">
+                    <!-- <div class="form-group col">
                         <label class="row" for="icon_materi">Icon Sub Materi</label>
 
                         
                         <x-editable-image fileInputName="logo" :imgSrc="$submateri->logo" imgId="logoSubmateri" />
-                    </div>
+                    </div> -->
       
                     <div class="form-group">
                         <label for="judul_submateri">Judul Submateri</label>
@@ -55,7 +55,7 @@
                         --}}
                     </div>
 
-                    <x-dynamic-dropdown-and-inputs-component section="Submateri" :totalContents="count($submateri->subMateriContents)" :contents="$submateri->subMateriContents"/>
+                    <x-dynamic-dropdown-and-inputs-component :excludes="['link','doc']" section="Submateri" :totalContents="count($submateri->subMateriContents)" :contents="$submateri->subMateriContents"/>
              
                     <button type="submit" class="btn btn-primary">
                         Submit

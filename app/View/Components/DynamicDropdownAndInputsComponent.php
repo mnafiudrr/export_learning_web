@@ -12,20 +12,23 @@ class DynamicDropdownAndInputsComponent extends Component
     public $totalContents;
     public $contents;
 
+    public $excludes;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($totalContents = 0, $section = '', $contents = [])
+    public function __construct($totalContents = 0, $section = '', $contents = [], Array $excludes = [])
     {
         //
-        $contentTypes = ContentType::all();
+        $contentTypes = ContentType::whereNotIn('type',$excludes)->get();
         $this->totalContents = $totalContents;
         $this->section = $section;
         $this->dropdownData = $contentTypes;
         $this->contents = $contents;
+        $this->excludes = $excludes;
+
     }
 
     /**

@@ -26,7 +26,7 @@
                           <input type="text" class="form-control" name="title" id="judul_materi" aria-describedby="emailHelp" placeholder="Masukkan Judul Materi">
                           {{-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
                         </div>
-                        <x-dynamic-dropdown-and-inputs-component section="Materi"/>
+                        <x-dynamic-dropdown-and-inputs-component section="Materi" :excludes="['link','doc']"/>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>

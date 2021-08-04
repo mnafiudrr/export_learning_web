@@ -59,7 +59,7 @@
                         --}}
                     </div>
 
-                    <x-dynamic-dropdown-and-inputs-component section="Materi" :totalContents="count($materi->materiContents)" :contents="$materi->materiContents"/>
+                    <x-dynamic-dropdown-and-inputs-component section="Materi" :totalContents="count($materi->materiContents)" :contents="$materi->materiContents" :excludes="['doc']"/>
              
                     <button type="submit" class="btn btn-primary">
                         Submit

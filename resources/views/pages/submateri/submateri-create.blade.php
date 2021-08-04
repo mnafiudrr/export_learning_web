@@ -42,12 +42,12 @@
                         >
                         --}}
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="foto">Logo</label>
                         <x-editable-image fileInputName="logo" imgId="logoMateri" />
 
-                    </div>
-                    <x-dynamic-dropdown-and-inputs-component section="Sub Materi"/>
+                    </div> -->
+                    <x-dynamic-dropdown-and-inputs-component section="Sub Materi" :excludes="['link','doc']"/>
 
                     <button type="submit" class="btn btn-primary">
                         Submit
