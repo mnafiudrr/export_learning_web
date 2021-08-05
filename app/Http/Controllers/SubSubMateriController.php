@@ -92,7 +92,7 @@ class SubSubMateriController extends Controller
 
     public function show($id)
     {
-        $ssm = SubSubMateri::with('subSubMateriContents')->find($id);
+        $ssm = SubSubMateri::with(['detailSsms','subSubMateriContents'])->find($id);
         if (!$ssm) {
             return 'not found';
         }

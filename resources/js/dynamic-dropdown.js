@@ -49,6 +49,10 @@ function onContentChange(e) {
     if (current) {
         $(`#label-${currentId}`).remove();
         current.remove();
+        $(`.doc-downloadable-${key}`).remove();
+        // .map((item, idx) => {
+        //     item.remove();
+        // });
     }
     if (contentType === "image") {
         // console.log("is image");

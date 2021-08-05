@@ -45,6 +45,9 @@ function onContentChange(e) {
   if (current) {
     $("#label-".concat(currentId)).remove();
     current.remove();
+    $(".doc-downloadable-".concat(key)).remove(); // .map((item, idx) => {
+    //     item.remove();
+    // });
   }
 
   if (contentType === "image") {

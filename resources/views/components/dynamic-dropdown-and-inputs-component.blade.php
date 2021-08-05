@@ -48,10 +48,10 @@
         id="content-value-{{ $index }}"
         >{{$content->value}}</textarea
     >
-    @elseif($content->content_type_id === 2)
+    @elseif($content->content_type_id === 2 /* GAMBAR */)
 
     <x-editable-image :imgSrc="$content->value" :imgId="'contentImage' . $index" fileInputName="contents[{{$index}}][value]"/>
-    @elseif($content->content_type_id === 3)
+    @elseif($content->content_type_id === 3 /* LINK */)
     <label
         for="content-value-{{ $index }}"
         id="label-content-value-{{ $index }}"
@@ -67,7 +67,22 @@
         value="{{$content->value ?? ''}}"
     />
 
-    @elseif($content->content_type_id === 4) @endif @endforeach @else
+    @elseif($content->content_type_id === 4 /* DOC */)
+    
+    
+    <input 
+        class="form-control my-3"
+        type="file" 
+        name="contents[{{ $index }}][value]"
+        id="content-value-{{ $index }}">
+
+                        @php
+
+                        $docSrc = str_replace('public', '', $content->value);
+
+                        @endphp
+                        <a href="{{asset('storage' . $docSrc)}}" class="doc-downloadable-{{$index}}" download>Download File {{$index + 1}}</a>
+    @endif @endforeach @else
 
     <div class="form-group">
         <label class="" for="">Tipe Konten 1</label>

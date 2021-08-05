@@ -5,6 +5,8 @@ use App\Http\Controllers\KontenSubSubMateriController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\SubMateriController;
 use App\Http\Controllers\SubSubMateriController;
+use App\Http\Controllers\DetailSsmController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,15 @@ Route::prefix('subsubmateri')->group(function () {
     Route::get('/create', [SubSubMateriController::class, 'create'])->name('subsubmateri.create');
     Route::get('/{id}', [SubSubMateriController::class, 'show'])->name('subsubmateri.show');
     Route::get('/{id}/edit', [SubSubMateriController::class, 'edit'])->name('subsubmateri.edit');
+});
+
+Route::prefix('detailssm')->group(function () {
+    Route::post('/', [DetailSsmController::class, 'store']);
+    Route::put('/{id}/edit', [DetailSsmController::class, 'update'])->name('detailssm.update');
+
+    Route::get('/create', [DetailSsmController::class, 'create'])->name('detailssm.create');
+    Route::get('/{id}', [DetailSsmController::class, 'show'])->name('detailssm.show');
+    Route::get('/{id}/edit', [DetailSsmController::class, 'edit'])->name('detailssm.edit');
 });
 
 

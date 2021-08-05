@@ -18,8 +18,8 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">List Konten Sub Sub Materi</h1>
             <a
-                href="{{ route('kontensubsubmateri.create') }}"
-                class="
+            href="/detailssm/create?parentId={{$ssm->id}}"
+            class="
                     d-none d-sm-inline-block
                     btn btn-sm btn-primary
                     shadow-sm
@@ -31,9 +31,54 @@
 
         <div class="card shadow mb-4">
             <div class="card-body">
-              
-                <x-dynamic-dropdown-and-inputs-component section="SubSubmateri" :totalContents="count($ssm->subSubMateriContents)" :contents="$ssm->subSubMateriContents"/>
-
+                <div class="table-responsive">
+                    <table
+                        class="table table-bordered"
+                        id="dataTable"
+                        width="100%"
+                        cellspacing="0"
+                    >
+                        <thead>
+                            <tr>
+                                <th>Sub Sub Materi</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Sub Sub Materi</th>
+                                <th class="text text-center">Aksi</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach($ssm->detailSsms as $ssm)
+                            <tr>
+                                <td>
+                                    <a
+                                        href="{{
+                                            route('detailssm.show', $ssm->id)
+                                        }}"
+                                        style="text-decoration: none"
+                                        >{{$ssm->title}}</a
+                                    >
+                                </td>
+                                <td>
+                                    <button
+                                        class="
+                                            d-none d-sm-inline-block
+                                            shadow-sm
+                                            btn-danger btn-sm
+                                        "
+                                        type="button"
+                                    >
+                                        Hapus
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
