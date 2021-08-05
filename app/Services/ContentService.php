@@ -25,6 +25,11 @@ class ContentService
             if ($content['content_type'] === 'image' && is_file($content['value'])) {
                 $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo'.$timestamps);
             }
+
+            if ($content['content_type'] === 'doc' && is_file($content['value'])) {
+                $content['value'] =  ImageService::storeImage($content['value'], 'doc', 'doc'.$timestamps);
+            }
+            
             $model->create(
                 [
                     $entity . '_id' => $parent->id,
