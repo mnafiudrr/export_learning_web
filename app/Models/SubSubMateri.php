@@ -22,7 +22,10 @@ class SubSubMateri extends Model
         return $this->belongsTo('App\Models\SubMateri', 'sub_materi_id', 'id');
     }
 
-
+    public function detailSsms(): HasMany
+    {
+        return $this->hasMany('App\Models\DetailSsm', 'sub_sub_materi_id', 'id');
+    }
     public function subSubMateriContents(): HasMany
     {
         return $this->hasMany('App\Models\SubSubMateriContent', 'sub_sub_materi_id', 'id');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubSubMateriContentsTable extends Migration
+class CreateDetailSsmContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateSubSubMateriContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub_sub_materi_contents', function (Blueprint $table) {
+        Schema::create('detail_ssm_contents', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('sub_sub_materi_id')->nullable();
-            $table->foreign('sub_sub_materi_id')->references('id')->on('sub_sub_materis');
-
+            $table->unsignedBigInteger('detail_ssm_id')->nullable();
+            $table->foreign('detail_ssm_id')->references('id')->on('detail_ssm');
             $table->unsignedBigInteger('content_type_id')->nullable();
             $table->foreign('content_type_id')->references('id')->on('content_types');
             
             $table->text('value')->nullable();
             $table->integer('row')->nullable();
-
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ class CreateSubSubMateriContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_sub_materi_contents');
+        Schema::dropIfExists('detail_ssm_contents');
     }
 }
