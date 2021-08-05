@@ -59,3 +59,12 @@ Route::prefix('subsubmateri')->group(function () {
 Route::get('kontensubsubmateri/create', [KontenSubSubMateriController::class, 'create'])->name('kontensubsubmateri.create');
 Route::get('kontensubsubmateri/{id}', [KontenSubSubMateriController::class, 'show'])->name('kontensubsubmateri.show');
 Route::get('kontensubsubmateri/{id}/edit', [KontenSubSubMateriController::class, 'edit'])->name('kontensubsubmateri.edit');
+
+
+Route::get('/quiz', function () {
+    return view('quis');
+});
+
+Route::get('/tambah-quiz', function () {
+    return view('quis-create');
+});
