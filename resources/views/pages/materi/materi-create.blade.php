@@ -23,7 +23,7 @@
                 >
                     @csrf
                     <div class="form-group">
-                        <label for="icon_materi">Icon Materi</label>
+                        <label for="icon_materi">Logo Materi</label>
                         <x-editable-image fileInputName="logo" imgId="logoMateri" />
                     </div>
                     <div class="form-group">

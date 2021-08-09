@@ -29,7 +29,7 @@
                     @csrf
                     <input type="hidden" name="materi_id" value="{{$materi->id}}">
                     <div class="form-group col">
-                        <label class="row" for="icon_materi">Icon Materi</label>
+                        <label class="row" for="icon_materi">Logo Materi</label>
 
                         
                         <x-editable-image fileInputName="logo" :imgSrc="$materi->logo" imgId="logoMateri" />

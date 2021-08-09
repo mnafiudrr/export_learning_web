@@ -11,17 +11,18 @@
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-12 col-md-12 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Harum quod dolor placeat ea, perspiciatis
-                        adipisci, tenetur nesciunt exercitationem rem, quo
-                        officia cum provident est sit ipsam minima? Eum, magnam
-                        fugiat?
-                    </p>
-                    <x-image :imgSrc="$materi->header" />
-
+                    <table style="width:40%">
+                        <tr>
+                            <th>Logo</th>
+                            <th>Header</th>
+                        </tr>
+                        <tr>
+                            <td><x-image :imgSrc="$materi->logo" /></td>
+                            <td><x-image :imgSrc="$materi->header" /></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
