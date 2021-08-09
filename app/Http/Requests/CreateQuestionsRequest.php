@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEventRequest extends FormRequest
+class CreateQuestionsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class CreateEventRequest extends FormRequest
     public function rules()
     {
         return [
-            'logo' => 'image',
-            'image' => 'required|image',
-            'content' => 'required|string'
+            'quis_id' => 'required|integer',
+            'questions' => 'required|array',
+            'questions.*.question' => 'required|string',
+            'questions.*.answers' => 'required|array',
+            'questions.*.key' => 'required|string',
         ];
     }
 }

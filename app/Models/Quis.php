@@ -13,6 +13,7 @@ class Quis extends Model
 
 
     protected $table = 'quises';
+    protected $guarded = ['id'];
     /**
      * Get all of the questions for the Quis
      *

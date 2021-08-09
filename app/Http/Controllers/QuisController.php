@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Models\Quis;
 use App\Models\Question;
+use App\Models\Option;
 
 use App\Http\Requests\SubmitQuizAnswerRequest;
+use App\Http\Requests\CreateQuisRequest;
+use Illuminate\Support\Facades\DB;
+
+
+use App\Services\ImageService;
+
+use Carbon\Carbon;
 
 class QuisController extends Controller
 {
@@ -59,5 +67,67 @@ class QuisController extends Controller
              ],
             200
         );
+    }
+
+
+    
+    public function indexQuis()
+    {
+        $quises = Quis::all();
+        return view('pages.quis.quis-index', compact('quises'));
+    }
+
+    public function create()
+    {
+        return view('pages.quis.quis-create');
+    }
+
+    public function store(CreateQuisRequest $req)
+    {
+        $payload = collect($req);
+
+        $quisPayload = $payload->only(['title','logo','header']);
+
+
+        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
+        
+        $files = $payload->only(['logo','header'/* ,'photo' */]);
+
+
+        /* Current file naming : {filetype}_{timestamps} */
+
+        foreach ($files as $key => $value) {
+            /* Magic Code to store images */
+            $quisPayload[$key] = ImageService::storeImage($value, $key, $key.$timestamps);
+        }
+        DB::beginTransaction();
+        try {
+            $quis = Quis::create($quisPayload->toArray());
+            foreach ($payload['questions'] as $idx => $question) {
+                $q = Question::create([
+                    'quis_id' => $quis->id,
+                    'question' => $question['question'],
+                    'key'       => $question['key']
+                ]);
+
+                foreach ($question['answers'] as $jj => $ans) {
+                    Option::create([
+                        'question_id' => $q->id,
+                        'value' => $ans,
+                        'correct' => $ans === $question['key']
+                    ]);
+                }
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        DB::commit();
+        return "success";
+    }
+
+    public function show($id)
+    {
+        $quis = Quis::with('questions')->find($id);
+        return view('pages.quis.quis-show', compact('quis'));
     }
 }

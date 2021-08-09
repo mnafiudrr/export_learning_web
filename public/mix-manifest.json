@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/dynamic-dropdown.js": "/js/dynamic-dropdown.js",
+    "/js/dynamic-quiz-component.js": "/js/dynamic-quiz-component.js",
     "/css/app.css": "/css/app.css",
     "/css/editable-image.css": "/css/editable-image.css"
 }

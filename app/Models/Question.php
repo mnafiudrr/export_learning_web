@@ -12,7 +12,7 @@ class Question extends Model
 {
     use HasFactory;
 
-    
+    protected $guarded = ['id'];
     public function quis(): BelongsTo
     {
         return $this->belongsTo(Quis::class, 'quis_id', 'id');

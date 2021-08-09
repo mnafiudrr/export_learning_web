@@ -15,6 +15,7 @@ use Carbon\Carbon;
 class EventController extends Controller
 {
     //
+    // public function index
 
     public function index(Request $req)
     {
@@ -38,6 +39,13 @@ class EventController extends Controller
         return response()->json($events, 200);
     }
 
+    public function indexEvent()
+    {
+        $events = Event::all();
+
+        return view('pages.event.event-index', compact('events'));
+    }
+
     public function get(Request $req, $id)
     {
         $event = Event::find($id);
@@ -50,8 +58,13 @@ class EventController extends Controller
         $payload = collect($req);
         $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
 
-        $payload['logo'] = ImageService::storeImage($req->logo, 'event', 'event_'.$timestamps);
-        $payload['image'] = ImageService::storeImage($req->image, 'image', 'image'.$timestamps);
+        if ($req->hasFile('logo')) {
+            $payload['logo'] = ImageService::storeImage($req->logo, 'event', 'event_'.$timestamps);
+        }
+
+        if ($req->hasFile('image')) {
+            $payload['image'] = ImageService::storeImage($req->image, 'image', 'image'.$timestamps);
+        }
 
 
 
@@ -65,5 +78,17 @@ class EventController extends Controller
         /* Only Simple Delete , Havent Deleted The Photo */
         $event = Event::destroy($id);
         return response()->json(['message' => 'success'], 200);
+    }
+
+    public function create()
+    {
+        return view('pages.event.event-create');
+    }
+
+    public function show($id)
+    {
+        $event = Event::find($id);
+
+        return view('pages.event.event-show', compact('event'));
     }
 }

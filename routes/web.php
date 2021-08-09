@@ -8,6 +8,11 @@ use App\Http\Controllers\SubSubMateriController;
 use App\Http\Controllers\DetailSsmController;
 
 use App\Http\Controllers\QuisController;
+use App\Http\Controllers\QuestionController;
+
+use App\Http\Controllers\EventController;
+
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -93,6 +98,27 @@ Route::prefix('quis')->group(
     }
 );
 
+Route::prefix('question')->group(
+    function () {
+        Route::get('/create', [QuestionController::class,'create']);
+        
+        Route::post('/', [QuestionController::class,'store']);
+        Route::get('/{questionId}', [QuestionController::class,'show']);
+    }
+);
+
+
+Route::prefix('event')->group(
+    function () {
+        Route::get('/', [EventController::class,'indexEvent']);
+        Route::get('/create', [EventController::class,'create'])->name('event.create');
+        
+        
+        Route::post('/', [EventController::class,'store']);
+        Route::get('/show/{id}', [EventController::class,'show'])->name('event.show');
+        Route::get('/{questionId}', [EventController::class,'show']);
+    }
+);
 Route::get('kontensubsubmateri/create', [KontenSubSubMateriController::class, 'create'])->name('kontensubsubmateri.create');
 Route::get('kontensubsubmateri/{id}', [KontenSubSubMateriController::class, 'show'])->name('kontensubsubmateri.show');
 Route::get('kontensubsubmateri/{id}/edit', [KontenSubSubMateriController::class, 'edit'])->name('kontensubsubmateri.edit');
