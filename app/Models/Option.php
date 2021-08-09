@@ -9,6 +9,7 @@ class Option extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
 
     /**
      * Get the question that owns the Option

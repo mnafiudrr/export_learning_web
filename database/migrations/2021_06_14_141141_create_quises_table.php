@@ -17,6 +17,7 @@ class CreateQuisesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('logo');
+            $table->string('header');
             $table->timestamps();
         });
     }

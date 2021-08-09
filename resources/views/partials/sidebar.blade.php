@@ -23,7 +23,7 @@
 
     <!-- Nav Item - Quiz -->
     <li class="nav-item">
-        <a class="nav-link" href="/quiz">
+        <a class="nav-link" href="/quis">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Quiz</span></a
         >
@@ -31,9 +31,9 @@
 
     <!-- Nav Item - Even -->
     <li class="nav-item">
-        <a class="nav-link" href="/even">
+        <a class="nav-link" href="/event">
             <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Even</span></a
+            <span>Event</span></a
         >
     </li>
 

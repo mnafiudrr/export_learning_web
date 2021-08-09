@@ -23,7 +23,9 @@ class QuisFactory extends Factory
     {
         return [
             'title' => $this->faker->word(),
-            'logo'  => $this->faker->imageUrl(400, 400, 'animals', true)
+            'logo'  => $this->faker->imageUrl(400, 400, 'animals', true),
+            'header'  => $this->faker->imageUrl(2000, 2000, 'animals', true)
+
         ];
     }
 }
