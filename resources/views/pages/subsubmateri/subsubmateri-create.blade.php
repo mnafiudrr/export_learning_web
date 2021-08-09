@@ -14,7 +14,7 @@
                         @csrf
                         <input type="hidden" name="sub_materi_id" value="{{$parentId}}">
                         <div class="form-group">
-                            <label for="icon_subsubmateri">Icon Sub Sub-Materi</label>
+                            <label for="icon_subsubmateri">Logo Sub Sub-Materi</label>
                             <x-editable-image fileInputName="logo" imgId="logoSubSubMateri" />
                         </div>
                         <div class="form-group">

@@ -2,13 +2,25 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Sub Sub Materi {{ $ssm->title }}</h1>
+        <a
+            href="/"
+            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+            ><i class="fas fa-edit fa-sm text-white-50"></i> Edit</a
+        >
     </div>
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-12 col-md-12 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    <x-image :imgSrc="$ssm->logo" />
+                    <table style="width:40%">
+                        <tr>
+                            <th>Logo</th>
+                        </tr>
+                        <tr>
+                            <td><x-image :imgSrc="$ssm->logo" /></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

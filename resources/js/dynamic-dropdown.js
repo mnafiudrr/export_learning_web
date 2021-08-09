@@ -77,7 +77,7 @@ function onContentChange(e) {
                         cols="50"
                         rows="10"
                         id="content-value-${key}"
-                        placeholder="ketik disinis"
+                        placeholder="Ketik disini"
 
                     ></textarea>`;
     } else if (contentType === "link") {
