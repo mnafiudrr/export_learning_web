@@ -4,6 +4,51 @@
         <hr />
     </div>
 
+    @if($quisContent !== null) @foreach($quisContent as $index => $content)
+    <div class="quis-section mb-5" id="quizSection0" data-key="0">
+        <div class="form-group">
+            <label for="soal" id="soal-label-0">
+                <strong class="soal-title-number">
+                    Soal {{ $index + 1 }}</strong
+                ></label
+            >
+            <input
+                type="text"
+                name="questions[{{ $index }}][question]"
+                id="soal-0"
+                class="form-control question"
+                value="{{$content->question}}"
+            />
+        </div>
+
+        @foreach($content->options as $idx => $ans)
+        <div class="form-group row mr-1">
+            <label for="jawaban-{{ $idx }}" class="col-3"
+                >Pilihan Jawaban {{ $idx + 1 }}</label
+            >
+            <input
+                type="text"
+                name="questions[{{ $index }}][answers][]"
+                id="jawaban-{{ $idx }}"
+                class="form-control col-9 answer-input"
+                value="{{$ans->value}}"
+            />
+        </div>
+
+        @endforeach
+
+        <div class="form-group mt-4">
+            <label for="answer-key" class="">Kunci Jawaban</label>
+            <input
+                type="text"
+                name="questions[{{ $index }}][key]"
+                id="answer-key"
+                class="form-control"
+                value="{{$content->key}}"
+            />
+        </div>
+    </div>
+    @endforeach @else
     <div class="quis-section mb-5" id="quizSection0" data-key="0">
         <div class="form-group">
             <label for="soal" id="soal-label-0">
@@ -43,6 +88,7 @@
         </div>
     </div>
 
+    @endif
     <div class="form-group content" id="quizContent">
         <a
             id="btnAppendQuiz"

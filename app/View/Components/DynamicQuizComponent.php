@@ -11,9 +11,11 @@ class DynamicQuizComponent extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $quisContent;
+    public function __construct($quisContent = null)
     {
         //
+        $this->quisContent = $quisContent;
     }
 
     /**
