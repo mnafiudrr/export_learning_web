@@ -130,4 +130,62 @@ class QuisController extends Controller
         $quis = Quis::with('questions')->find($id);
         return view('pages.quis.quis-show', compact('quis'));
     }
+
+    public function update(Request $req, $id)
+    {
+        $payload = collect($req);
+
+        $quisPayload = $payload->only(['title','logo','header']);
+
+
+        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
+        
+        $files = $payload->only(['logo','header'/* ,'photo' */]);
+        if ($req->hasFile('logo')) {
+            // if (file_exists('/'.$materi->logo)) {
+            //     dd('exist');
+            // }
+            $quisPayload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+        }
+
+        if ($req->hasFile('header')) {
+            $quisPayload['header'] = ImageService::storeImage($req->header, 'header', 'header'.$timestamps);
+        }
+        $quis = Quis::with('questions.options')->find($id);
+
+        // dd($quis);
+        DB::beginTransaction();
+        try {
+            $quis->update($quisPayload->toArray());
+
+            $quis->questions()->delete();
+            
+            foreach ($payload['questions'] as $idx => $question) {
+                $q = Question::create([
+                    'quis_id' => $quis->id,
+                    'question' => $question['question'],
+                    'key'       => $question['key']
+                ]);
+
+                foreach ($question['answers'] as $jj => $ans) {
+                    Option::create([
+                        'question_id' => $q->id,
+                        'value' => $ans,
+                        'correct' => $ans === $question['key']
+                    ]);
+                }
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        DB::commit();
+        return redirect('/quis');
+    }
+    public function edit($id)
+    {
+        $quis = Quis::with(['questions.options'])->find($id);
+
+
+        return view('pages.quis.quis-edit', compact('quis'));
+    }
 }
