@@ -1,7 +1,7 @@
 @extends('partials.master') @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Materi</h1>
+        <h1 class="h3 mb-0 text-gray-800">Tambah Quiz</h1>
     </div>
 
     <div class="col-md-6 offset-3">
@@ -23,7 +23,7 @@
                 >
                     @csrf
                     <div class="form-group">
-                        <label for="icon_materi">Icon Quiz</label>
+                        <label for="icon_materi">Logo Quiz</label>
                         <x-editable-image fileInputName="logo" imgId="logoQuiz" />
                     </div>
                     <div class="form-group">

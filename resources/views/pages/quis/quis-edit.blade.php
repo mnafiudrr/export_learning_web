@@ -29,7 +29,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="icon_materi">Icon Quiz</label>
+                    <label for="icon_materi">Logo Quiz</label>
                     <x-editable-image fileInputName="logo" :imgSrc="$quis->logo" imgId="logoQuiz" />
                 </div>
                 <div class="form-group">

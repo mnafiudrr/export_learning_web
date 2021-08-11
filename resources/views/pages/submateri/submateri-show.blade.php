@@ -11,7 +11,7 @@
         >
     </div>
     <!-- Content Row -->
-    <div class="row">
+    <div class="row ml-2 mr-2">
         <div class="col-xl-12 col-md-12 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">

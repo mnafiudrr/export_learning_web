@@ -9,20 +9,21 @@
         >
     </div>
     <!-- Content Row -->
-    <div class="row">
-        <div class="col-xl-12 col-md-12 mb-4">
+    <div class="row ml-2">
+        <div class="col-xl-2 col-md-2 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    <table style="width:40%">
-                        <tr>
-                            <th>Logo</th>
-                            <th>Header</th>
-                        </tr>
-                        <tr>
-                            <td><x-image :imgSrc="$materi->logo" /></td>
-                            <td><x-image :imgSrc="$materi->header" /></td>
-                        </tr>
-                    </table>
+                    <p>Logo Materi</p>
+                    <td><x-image :imgSrc="$materi->logo" /></td>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-7 col-md-9 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <p>Header Materi</p>
+                    <td><x-image :imgSrc="$materi->header" /></td>
+
                 </div>
             </div>
         </div>

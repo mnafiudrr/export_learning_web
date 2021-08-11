@@ -1,7 +1,7 @@
 @extends('partials.master') @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Quis <strong>{{$quis->title}}</strong></h1>
+        <h1 class="h3 mb-0 text-gray-800">Quiz <strong>{{$quis->title}}</strong></h1>
         <a
             href="{{ route('quis.edit', $quis->id) }}"
             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
@@ -11,18 +11,17 @@
     <!-- Content Row -->
     <div class="row ml-2">
         <div class="col-xl-2 col-md-2 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body" style="display: flex; justify-content: center;">
-                    
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <p>Logo Quiz</p>
                     <x-image :imgSrc="$quis->logo" />
-
                 </div>
             </div>
         </div>
-        <div class="col-xl-9 col-md-9 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+        <div class="col-xl-7 col-md-9 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    
+                    <p>Header Quiz</p>
                     <x-image :imgSrc="$quis->header" />
 
                 </div>
