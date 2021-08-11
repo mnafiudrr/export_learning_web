@@ -17,10 +17,12 @@
                             <label for="icon_subsubmateri">Logo Sub Sub-Materi</label>
                             <x-editable-image fileInputName="logo" imgId="logoSubSubMateri" />
                         </div>
+                        <!--
                         <div class="form-group">
                             <label for="header">Header</label>
                             <x-editable-image fileInputName="header"  imgId="headerSubSubMateri"/>
                         </div>
+                        -->
                         <div class="form-group">
                           <label for="judul_materi">Judul Sub Sub-Materi</label>
                           <input type="text" class="form-control" name="title" id="judul_materi" aria-describedby="emailHelp" placeholder="Masukkan Judul Materi">
