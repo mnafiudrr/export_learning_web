@@ -25,7 +25,7 @@
     <li class="nav-item">
         <a class="nav-link" href="/quis">
             <i class="fas fa-fw fa-tasks"></i>
-            <span>Quiz</span></a
+            <span>Quis</span></a
         >
     </li>
 
