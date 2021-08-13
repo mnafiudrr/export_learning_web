@@ -50,7 +50,6 @@ class MateriController extends Controller
 
         $payload['number'] = 1; // Dummy
 
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
         
         $files = $payload->only(['logo','header'/* ,'photo' */]);
 
@@ -59,7 +58,7 @@ class MateriController extends Controller
 
         foreach ($files as $key => $value) {
             /* Magic Code to store images */
-            $payload[$key] = ImageService::storeImage($value, $key, $key.$timestamps);
+            $payload[$key] = ImageService::storeImage($value, $key, $key);
         }
 
 
@@ -91,7 +90,6 @@ class MateriController extends Controller
         if (!$materi) {
             return 'not found';
         }
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
 
         $payload = collect($req);
         $materiContentPayload = $payload->get('contents');
@@ -102,11 +100,11 @@ class MateriController extends Controller
             if (file_exists('/'.$materi->logo)) {
                 dd('exist');
             }
-            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo');
         }
 
         if ($req->hasFile('header')) {
-            $payload['header'] = ImageService::storeImage($req->header, 'header', 'header'.$timestamps);
+            $payload['header'] = ImageService::storeImage($req->header, 'header', 'header');
         }
 
         DB::beginTransaction();

@@ -17,7 +17,6 @@ class DetailSsmController extends Controller
 
     public function store(Request $req)
     {
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
      
         $payload  = collect($req);
 
@@ -50,7 +49,6 @@ class DetailSsmController extends Controller
         if (!$detailSsm) {
             return 'not found';
         }
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
 
         $payload = collect($req);
         $materiContentPayload = $payload->get('contents');
@@ -59,7 +57,7 @@ class DetailSsmController extends Controller
             if (file_exists('/'.$detailSsm->logo)) {
                 dd('exist');
             }
-            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo');
         }
 
         try {

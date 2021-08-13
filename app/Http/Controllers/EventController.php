@@ -56,14 +56,13 @@ class EventController extends Controller
     public function store(CreateEventRequest $req)
     {
         $payload = collect($req);
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
 
         if ($req->hasFile('logo')) {
-            $payload['logo'] = ImageService::storeImage($req->logo, 'event', 'event_'.$timestamps);
+            $payload['logo'] = ImageService::storeImage($req->logo, 'event', 'event_');
         }
 
         if ($req->hasFile('image')) {
-            $payload['image'] = ImageService::storeImage($req->image, 'image', 'image'.$timestamps);
+            $payload['image'] = ImageService::storeImage($req->image, 'image', 'image');
         }
 
 

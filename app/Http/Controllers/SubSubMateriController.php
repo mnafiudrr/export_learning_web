@@ -37,8 +37,7 @@ class SubSubMateriController extends Controller
     public function store(Request $req)
     {
         $payload  = collect($req);
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
-        $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo_'.$timestamps);
+        $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo_');
 
         DB::beginTransaction();
         $subsubmateri =collect();
@@ -50,7 +49,7 @@ class SubSubMateriController extends Controller
             foreach ($payload['contents'] as  $content) {
                 $contentTypeId = ContentType::where('type', $content['content_type'])->first()->id;
                 if ($content['content_type'] === 'image') {
-                    $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo'.$timestamps);
+                    $content['value'] =  ImageService::storeImage($content['value'], 'photo', 'photo');
                 }
                 SubSubMateriContent::create(
                     [
@@ -88,12 +87,11 @@ class SubSubMateriController extends Controller
         $payload  = collect($req);
         $materiContentPayload = $payload->get('contents');
 
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
         if ($req->hasFile('logo')) {
             if (file_exists('/'.$ssm->logo)) {
                 dd('exist');
             }
-            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo');
         }
 
         DB::beginTransaction();

@@ -89,7 +89,6 @@ class QuisController extends Controller
         $quisPayload = $payload->only(['title','logo','header']);
 
 
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
         
         $files = $payload->only(['logo','header'/* ,'photo' */]);
 
@@ -98,7 +97,7 @@ class QuisController extends Controller
 
         foreach ($files as $key => $value) {
             /* Magic Code to store images */
-            $quisPayload[$key] = ImageService::storeImage($value, $key, $key.$timestamps);
+            $quisPayload[$key] = ImageService::storeImage($value, $key, $key);
         }
         DB::beginTransaction();
         try {
@@ -138,18 +137,17 @@ class QuisController extends Controller
         $quisPayload = $payload->only(['title','logo','header']);
 
 
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
         
         $files = $payload->only(['logo','header'/* ,'photo' */]);
         if ($req->hasFile('logo')) {
             // if (file_exists('/'.$materi->logo)) {
             //     dd('exist');
             // }
-            $quisPayload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+            $quisPayload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo');
         }
 
         if ($req->hasFile('header')) {
-            $quisPayload['header'] = ImageService::storeImage($req->header, 'header', 'header'.$timestamps);
+            $quisPayload['header'] = ImageService::storeImage($req->header, 'header', 'header');
         }
         $quis = Quis::with('questions.options')->find($id);
 

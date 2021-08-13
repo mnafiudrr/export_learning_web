@@ -53,7 +53,6 @@ class SubMateriController extends Controller
 
     public function store(Request $req)
     {
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
      
         $payload  = collect($req);
 
@@ -61,7 +60,7 @@ class SubMateriController extends Controller
         if(isset($req->logo) && $req->hasFile('logo'))
         {
 
-            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo_'.$timestamps);
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo_');
         }
    
    
@@ -90,7 +89,6 @@ class SubMateriController extends Controller
         if (!$submateri) {
             return 'not found';
         }
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
 
         $payload = collect($req);
         $materiContentPayload = $payload->get('contents');
@@ -99,7 +97,7 @@ class SubMateriController extends Controller
             if (file_exists('/'.$submateri->logo)) {
                 dd('exist');
             }
-            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo');
         }
 
         try {

@@ -18,7 +18,7 @@ class ContentService
     public static function saveContent(Model $model, array $payload, String $entity, $parent): void
     {
         $row = 1;
-        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
+        $timestamps = Carbon::now()->format('Y-m-d H_i_s'); //Timestamps for file naming
 
         foreach ($payload as $content) {
             $contentTypeId = ContentType::where('type', $content['content_type'])->first()->id;
