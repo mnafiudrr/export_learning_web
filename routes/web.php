@@ -68,6 +68,7 @@ Route::prefix('submateri')->group(
 Route::prefix('subsubmateri')->group(
     function () {
         Route::post('/', [SubSubMateriController::class, 'store']);
+        Route::put('/{id}/edit', [SubSubMateriController::class, 'update'])->name('subsubmateri.update');
 
         Route::get('/create', [SubSubMateriController::class, 'create'])->name('subsubmateri.create');
         Route::get('/{id}', [SubSubMateriController::class, 'show'])->name('subsubmateri.show');

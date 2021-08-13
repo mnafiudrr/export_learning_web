@@ -10,6 +10,7 @@ use App\Models\SubSubMateriContent;
 use App\Models\ContentType;
 
 use App\Services\ImageService;
+use App\Services\ContentService;
 
 
 use Carbon\Carbon;
@@ -69,6 +70,46 @@ class SubSubMateriController extends Controller
         DB::commit();
 
         return $subsubmateri;
+    }
+
+    public function edit($id)
+    {
+        $ssm = SubSubMateri::with('subSubMateriContents')->find($id);
+
+        return view('pages.subsubmateri.subsubmateri-edit', compact('ssm'));
+    }
+    public function update(Request $req, $id)
+    {
+        // dd($req->all());
+        $ssm = SubSubMateri::find($req->sub_sub_materi_id);
+        if (!$ssm) {
+            return view('errors.404');
+        }
+        $payload  = collect($req);
+        $materiContentPayload = $payload->get('contents');
+
+        $timestamps = Carbon::now()->toDateTimeString(); //Timestamps for file naming
+        if ($req->hasFile('logo')) {
+            if (file_exists('/'.$ssm->logo)) {
+                dd('exist');
+            }
+            $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo'.$timestamps);
+        }
+
+        DB::beginTransaction();
+        $subsubmateri =collect();
+        try {
+            $ssm->update($payload->toArray());
+            $ssm->subSubMateriContents()->delete();
+            $model = new SubSubMateriContent;
+            ContentService::saveContent($model, $materiContentPayload, 'sub_sub_materi', $ssm);
+        } catch (\Throwable $th) {
+            throw $th;
+            DB::rollback();
+        }
+        DB::commit();
+
+        return redirect('/subsubmateri/'. $ssm->id);
     }
 
     public function getSubSubMateriBySubMateriId(Request $req, $id)
