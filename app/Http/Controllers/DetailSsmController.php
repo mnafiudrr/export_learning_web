@@ -37,7 +37,7 @@ class DetailSsmController extends Controller
         }
         DB::commit();
 
-        return $detailSsm;
+        return redirect()->to('detailssm/'.$detailSsm->id);
 
     }
     
@@ -70,8 +70,10 @@ class DetailSsmController extends Controller
             DB::rollback();
         }
         DB::commit();
-        return redirect()->back();
-    }    public function create(Request $req)
+        return redirect()->to('detailssm/'.$detailSsm->id);
+    }    
+    
+    public function create(Request $req)
     {
 
         $parentId = $req->parentId;

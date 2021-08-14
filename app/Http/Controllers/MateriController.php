@@ -80,7 +80,7 @@ class MateriController extends Controller
             DB::rollback();
         }
         DB::commit();
-        return $materi;
+        return redirect()->to('materi/'.$materi->id);
     }
 
     public function update(UpdateMateriRequest $req)
@@ -119,6 +119,7 @@ class MateriController extends Controller
             DB::rollback();
         }
         DB::commit();
+        return redirect()->to('materi/'.$materi->id);
 
         /* Current file naming : {filetype}_{timestamps} */
 

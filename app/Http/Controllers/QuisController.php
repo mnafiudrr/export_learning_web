@@ -121,7 +121,7 @@ class QuisController extends Controller
             throw $th;
         }
         DB::commit();
-        return "success";
+        return redirect()->to('quis/'.$quis->id);
     }
 
     public function show($id)
@@ -177,7 +177,7 @@ class QuisController extends Controller
             throw $th;
         }
         DB::commit();
-        return redirect('/quis');
+        return redirect()->to('quis/'.$quis->id);
     }
     public function edit($id)
     {

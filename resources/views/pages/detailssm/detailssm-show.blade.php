@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
-            Konten Sub Sub Materi <strong> {{$detailSsm->title}} </strong>
+            Detail Sub Sub Materi <strong> {{$detailSsm->title}} </strong>
         </h1>
     </div>
     <!-- Content Row -->
@@ -22,23 +22,25 @@
                     @if($content->contentType->type === 'text')
 
                     <div class="content my-3">
-                        <h1>Paragraf {{ $index }}</h1>
+                        <h2>Paragraf {{ $content->row }}</h2>
 
                         <p>{{$content->value}}</p>
                     </div>
+                    <br>
 
                     @elseif($content->contentType->type === 'image')
 
                     <div class="content">
-                        <h1>Gambar {{ $content->row }}</h1>
+                        <h2>Gambar {{ $content->row }}</h2>
 
                         <x-image :imgSrc="$content->value" />
                     </div>
+                    <br>
                     
                     @elseif($content->contentType->type === 'doc')
 
                     <div class="content">
-                        <h1>Dokumen {{ $content->row }}</h1>
+                        <h2>Dokumen {{ $content->row }}</h2>
 
                         @php
 

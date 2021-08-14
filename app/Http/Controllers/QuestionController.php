@@ -66,6 +66,7 @@ class QuestionController extends Controller
             throw $th;
         }
         DB::commit();
+        return redirect()->to('quis/'.$quis->id);
     }
 
     public function show($questionId)

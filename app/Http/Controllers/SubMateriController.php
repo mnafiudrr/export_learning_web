@@ -78,8 +78,7 @@ class SubMateriController extends Controller
             DB::rollback();
         }
         DB::commit();
-
-        return $submateri;
+        return redirect()->to('submateri/'.$submateri->id);
     }
 
     public function update(Request $req)
@@ -110,7 +109,7 @@ class SubMateriController extends Controller
             DB::rollback();
         }
         DB::commit();
-        return redirect()->back();
+        return redirect()->to('submateri/'.$submateri->id);
     }
     public function create(Request $req)
     {

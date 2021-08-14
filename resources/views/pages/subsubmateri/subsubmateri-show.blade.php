@@ -22,7 +22,7 @@
 
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">List Konten Sub Sub Materi</h1>
+            <h1 class="h3 mb-0 text-gray-800">List Detail Sub Sub Materi</h1>
             <a
             href="/detailssm/create?parentId={{$ssm->id}}"
             class="
@@ -30,7 +30,7 @@
                     btn btn-sm btn-primary
                     shadow-sm
                 "
-                ><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Konten
+                ><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Detail
                 Sub Sub Materi</a
             >
         </div>
@@ -46,13 +46,13 @@
                     >
                         <thead>
                             <tr>
-                                <th>Sub Sub Materi</th>
+                                <th>Detail Sub Sub Materi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Sub Sub Materi</th>
+                                <th>Detail Sub Sub Materi</th>
                                 <th class="text text-center">Aksi</th>
                             </tr>
                         </tfoot>

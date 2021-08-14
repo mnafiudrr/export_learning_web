@@ -67,8 +67,7 @@ class SubSubMateriController extends Controller
             DB::rollback();
         }
         DB::commit();
-
-        return $subsubmateri;
+        return redirect()->to('subsubmateri/'.$subsubmateri->id);
     }
 
     public function edit($id)
