@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Even</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Event</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>

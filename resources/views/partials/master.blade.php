@@ -23,6 +23,8 @@
     <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{mix('css/editable-image.css')}}">
+
+    <link rel="shortcut icon" href="{{asset('admin/img/eksporasi.png')}}">
 </head>
 
 <body id="page-top">
