@@ -24,27 +24,15 @@
         <div class="container-fluid">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">List Sub Sub Materi</h1>
-                <a
-                    href="/subsubmateri/create?parentId={{$submateri->id}}"
-                    class="
-                        d-none d-sm-inline-block
-                        btn btn-sm btn-primary
-                        shadow-sm
-                    "
-                    ><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Sub Sub
-                    Materi</a
-                >
+                <a href="/subsubmateri/create?parentId={{$submateri->id}}" class=" d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Sub Sub Materi
+                </a>
             </div>
 
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table
-                            class="table table-bordered"
-                            id="dataTable"
-                            width="100%"
-                            cellspacing="0"
-                        >
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Sub Sub Materi</th>
@@ -59,29 +47,16 @@
                             </tfoot>
                             <tbody>
                                 @foreach($submateri->subSubMateri as $ssm)
-                                <tr>
-                                    <td>
-                                        <a
-                                            href="{{
-                                                route('subsubmateri.show', $ssm->id)
-                                            }}"
-                                            style="text-decoration: none"
-                                            >{{$ssm->title}}</a
-                                        >
-                                    </td>
-                                    <td>
-                                        <button
-                                            class="
-                                                d-none d-sm-inline-block
-                                                shadow-sm
-                                                btn-danger btn-sm
-                                            "
-                                            type="button"
-                                        >
-                                            Hapus
-                                        </button>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('subsubmateri.show', $ssm->id) }}" style="text-decoration: none" >
+                                                {{$ssm->title}}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button class=" d-none d-sm-inline-block shadow-sm btn-danger btn-sm" type="button">Hapus</button>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
