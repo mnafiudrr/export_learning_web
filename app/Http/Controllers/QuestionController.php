@@ -76,9 +76,9 @@ class QuestionController extends Controller
         $quis = Quis::find($question->quis_id);
         $payload = [
             'quis_title' => $quis->title,
-            'question' => $question
+            'question' => $question,
+            'quis_id' => $question->quis_id
         ];
         return view('pages.quis.question.question-show', compact('payload'));
-        // dd($question);
     }
 }
