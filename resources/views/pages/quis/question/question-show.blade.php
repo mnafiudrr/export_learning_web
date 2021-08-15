@@ -21,7 +21,6 @@
                     </h4>
 
                     @foreach($payload['question']->options as $idx => $opt)
-
                     <h4>Jawaban {{ $idx + 1 }}</h4>
                     <p>{{$opt->value}}</p>
                     @endforeach
