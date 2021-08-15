@@ -68,7 +68,7 @@ class EventController extends Controller
 
 
         $event = Event::create($payload->toArray());
-        return response()->json($event, 200);
+        return redirect()->to('event/');
     }
     
     public function destroy($id)

@@ -95,10 +95,8 @@ class MateriController extends Controller
         $materiContentPayload = $payload->get('contents');
 
         if ($req->hasFile('logo')) {
-            dd('emang file ?');
 
             if (file_exists('/'.$materi->logo)) {
-                dd('exist');
             }
             $payload['logo'] = ImageService::storeImage($req->logo, 'logo', 'logo');
         }
