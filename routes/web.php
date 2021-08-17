@@ -106,3 +106,9 @@ Route::prefix('event')->group(
         Route::get('/{questionId}', [EventController::class,'show']);
     }
 );
+
+Route::prefix('setting')->group(
+    function () {
+        Route::get('/', [SettingController::class,'indexSetting']);
+    }
+);
