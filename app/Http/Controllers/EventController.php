@@ -65,8 +65,6 @@ class EventController extends Controller
             $payload['image'] = ImageService::storeImage($req->image, 'image', 'image');
         }
 
-
-
         $event = Event::create($payload->toArray());
         return redirect()->to('event/');
     }

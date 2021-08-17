@@ -12,6 +12,8 @@ use App\Http\Controllers\QuestionController;
 
 use App\Http\Controllers\EventController;
 
+use App\Http\Controllers\SettingController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get(
@@ -110,5 +112,6 @@ Route::prefix('event')->group(
 Route::prefix('setting')->group(
     function () {
         Route::get('/', [SettingController::class,'indexSetting']);
+        Route::get('/create', [SettingController::class,'create'])->name('setting.create');
     }
 );
