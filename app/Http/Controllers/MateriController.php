@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateMateriRequest;
 use App\Http\Requests\UpdateMateriRequest;
-
+use App\Http\Resources\MateriResource;
 // Models
 
 use App\Models\Materi;
@@ -36,9 +36,12 @@ class MateriController extends Controller
         $materi  = Materi::with([
             'materiContents',
             'subMateris'
-            ])->find($id);
+        ])->find($id);
+        
+        $resource = new MateriResource($materi);
 
-        return response()->json($materi, 200);
+        // return response()->json($materi, 200);
+        return response()->json($resource, 200);
     }
     public function store(CreateMateriRequest $req)
     {
