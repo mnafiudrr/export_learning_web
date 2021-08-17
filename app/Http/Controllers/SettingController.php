@@ -19,7 +19,7 @@ class SettingController extends Controller
         return view('pages.setting.setting-index', compact('settings'));
     }
 
-    public function store(CreateSettingRequest $req)
+    public function store(CreateMasterRequest $req)
     {
         $payload = collect($req);
 
@@ -35,7 +35,7 @@ class SettingController extends Controller
         return redirect()->to('setting/');
     }
 
-    public function create()
+    public function tambah()
     {
         return view('pages.setting.setting-create');
     }

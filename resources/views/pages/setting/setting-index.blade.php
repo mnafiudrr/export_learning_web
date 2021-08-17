@@ -11,7 +11,7 @@
             <i class="fas fa-trash fa-sm text-white-50"></i> Hapus
         </a>
 
-        <a href="/create" class="d-none d-sm-inline-block btn btn-lg btn-success shadow-sm mb-3">
+        <a href="/setting/tambah" class="d-none d-sm-inline-block btn btn-lg btn-success shadow-sm mb-3">
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
         </a>
 

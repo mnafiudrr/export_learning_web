@@ -24,9 +24,10 @@ class CreateMasterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'value' => 'required|string',
-            'desc'  => 'optional|string'
+            'splash' => 'required|image',
+            'tagline' => 'required|string',
+            'header'  => 'requiredl|image',
+            'link'  => 'required|string'
         ];
     }
 }

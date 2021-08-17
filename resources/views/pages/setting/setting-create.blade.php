@@ -12,7 +12,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="splash">Splash Screen</label>
-                            <x-editable-image fileInputName="image" imgId="splash" />
+                            <x-editable-image fileInputName="imageSplash" imgId="splash" />
                         </div>
 
                         <div class="form-group">
@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="splash">Header Utama</label>
-                            <x-editable-image fileInputName="image" imgId="header" />
+                            <x-editable-image fileInputName="imageHeader" imgId="header" />
                         </div>
 
                         <div class="form-group">
