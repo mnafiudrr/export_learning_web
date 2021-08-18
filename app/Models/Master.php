@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Master extends Model
 {
     use HasFactory;
+    protected $table = 'masters';
+    protected $fillable = ['splash','tagline','header','link'];
 }

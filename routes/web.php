@@ -112,9 +112,10 @@ Route::prefix('event')->group(
 Route::prefix('setting')->group(
     function () {
         Route::get('/', [SettingController::class,'indexSetting']);
-        Route::get('/tambah', [SettingController::class,'tambah']);
+        Route::get('/create', [SettingController::class,'create']);
 
         
-        Route::post('/', [EventController::class,'store']);
+        Route::post('/', [SettingController::class,'store']);
+        Route::get('{id}/hapus', [SettingController::class,'hapus']);
     }
 );

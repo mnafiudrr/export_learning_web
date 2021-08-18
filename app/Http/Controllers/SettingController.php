@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Master;
 
-use App\Services\ImageService;
-
 use Carbon\Carbon;
 
 class SettingController extends Controller
@@ -19,24 +17,29 @@ class SettingController extends Controller
         return view('pages.setting.setting-index', compact('settings'));
     }
 
-    public function store(CreateMasterRequest $req)
+    public function store(Request $request)
     {
-        $payload = collect($req);
-
-        if ($req->hasFile('splash')) {
-            $payload['splash'] = ImageService::storeImage($req->splash, 'splash', 'splash');
+        $settings = Master::create($request->all());
+        if($request->hasFile('splash','header')){
+            $request->file('splash')->move('image/',$request->file('splash')->getClientOriginalName());
+            $settings->splash = $request->file('splash')->getClientOriginalName();
+            $settings->save();
+            $request->file('header')->move('image/',$request->file('header')->getClientOriginalName());
+            $settings->header = $request->file('header')->getClientOriginalName();
+            $settings->save();
         }
-
-        if ($req->hasFile('header')) {
-            $payload['header'] = ImageService::storeImage($req->header, 'header', 'header');
-        }
-
-        $settings = Master::create($payload->toArray());
-        return redirect()->to('setting/');
+        return redirect('/setting');
     }
 
-    public function tambah()
+    public function create()
     {
         return view('pages.setting.setting-create');
+    }
+
+    public function hapus($id)
+    {
+        $settings = Master::find($id);
+        $settings->delete();
+        return redirect('/setting');
     }
 }

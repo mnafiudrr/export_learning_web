@@ -12,17 +12,17 @@
                         @csrf
                         <div class="form-group">
                             <label for="splash">Splash Screen</label>
-                            <x-editable-image fileInputName="imageSplash" imgId="splash" />
+                            <input type="file" name="splash" class="form-control">
                         </div>
-
+                            
                         <div class="form-group">
                             <label for="tagline">Tagline</label>
-                            <input type="text" class="form-control" name="tagline" id="tagline" aria-describedby="emailHelp" placeholder="Masukkan tagline"/>
+                            <input type="text" class="form-control" name="tagline" id="tagline" placeholder="Masukkan tagline"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="splash">Header Utama</label>
-                            <x-editable-image fileInputName="imageHeader" imgId="header" />
+                            <label for="header">Header Utama</label>
+                            <input type="file" name="header" class="form-control">
                         </div>
 
                         <div class="form-group">
