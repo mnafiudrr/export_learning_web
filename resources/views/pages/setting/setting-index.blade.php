@@ -1,22 +1,49 @@
 @extends('partials.master') @section('content')
 
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 ml-4">
+        <h1 class="h3 mb-0 text-gray-800">Setting</h1>
+    </div>
+
+    <a
+        href="/setting/create"
+        class="
+            d-none d-sm-inline-block
+            btn btn-lg btn-success
+            shadow-sm
+            mb-3
+            ml-4
+        "
+    >
+        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
+    </a>
+
     <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4 ml-4">
-            <h1 class="h3 mb-0 text-gray-800">
-                Setting
-            </h1>
-        </div>
+        <div class="card shadow px-4">
+            <div class="card-body">
+                <div class="my-4">
+                    @foreach($settings as $idx => $setting)
 
-        <a href="/setting/create" class="d-none d-sm-inline-block btn btn-lg btn-success shadow-sm mb-3 ml-4">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
-        </a>
+                    <div class="my-4">
+                    <h2>{{ucwords($setting->desc)}}</h2>
 
-        <div class="container-fluid">
-            <div class="card shadow px-4">
-                <div class="card-body">
-                    <div class=" my-4">
-                        @foreach($settings as $setting)
-                            <h2>Splash Screen</h2>
+
+
+                        @if($setting->content_type_id === 1)
+                        <p>{{$setting->value}}</p>
+                        
+                        @elseif($setting->content_type_id === 2)
+                        <x-image :imgSrc="$setting->value" :imgId="$setting->name . '-'. $idx" />
+                            
+                        @elseif($setting->content_type_id === 3)
+                        <p>{{$setting->value}}</p>
+
+                        @endif
+                            
+                        </div>
+
+
+                    <!-- <h2>Splash Screen</h2>
                             <img src="{{asset('image/'.$setting->splash)}}" alt="splash" style="max-width: 200px">
                             <br>
                             <h2>Tagline</h2>
@@ -31,12 +58,12 @@
                             <br>
                             <a href="/setting/{{$setting->id}}/hapus" class="d-none d-sm-inline-block btn btn-lg btn-danger shadow-sm">
                                 <i class="fas fa-trash fa-sm text-white-50"></i> Hapus Data
-                            </a>
-                        @endforeach
-                    </div>
+                            </a> -->
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 @endsection

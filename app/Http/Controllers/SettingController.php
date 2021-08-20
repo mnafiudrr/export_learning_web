@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Master;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
-use App\Models\Master;
-
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -19,21 +19,30 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
-        $settings = Master::create($request->all());
-        if($request->hasFile('splash','header')){
-            $request->file('splash')->move('image/',$request->file('splash')->getClientOriginalName());
-            $settings->splash = $request->file('splash')->getClientOriginalName();
-            $settings->save();
-            $request->file('header')->move('image/',$request->file('header')->getClientOriginalName());
-            $settings->header = $request->file('header')->getClientOriginalName();
-            $settings->save();
+        DB::beginTransaction();
+        try {
+            foreach ($request->setting as $index => $setting) {
+                if (is_file($setting['value'])) {
+                    $setting['value'] = ImageService::storeImage($setting['value'], 'settings', 'setting-' .$setting['desc']);
+                }
+                
+                $master = Master::where('name', 'LIKE', '%'.$setting['name'].'%')->first();
+                $master->value = $setting['value'];
+                $master->save();
+            }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            throw $th;
         }
+        DB::commit();
+    
         return redirect('/setting');
     }
 
     public function create()
     {
-        return view('pages.setting.setting-create');
+        $settings = Master::all();
+        return view('pages.setting.setting-create', compact('settings'));
     }
 
     public function hapus($id)

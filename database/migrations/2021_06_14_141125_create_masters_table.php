@@ -15,10 +15,12 @@ class CreateMastersTable extends Migration
     {
         Schema::create('masters', function (Blueprint $table) {
             $table->id();
-            $table->string('splash')->nullable();
-            $table->string('tagline');
-            $table->string('header')->nullable();
-            $table->string('link');
+            $table->string('name');
+            $table->string('value');
+            $table->string('desc');
+            $table->unsignedBigInteger('content_type_id')->nullable();
+            $table->foreign('content_type_id')->references('id')->on('content_types');
+
             $table->timestamps();
         });
     }

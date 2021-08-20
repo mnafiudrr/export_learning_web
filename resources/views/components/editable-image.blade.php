@@ -43,10 +43,14 @@
 
             $("#{{$imgId}}").hide();
 
-            $("#{{$fileInputName}}").show();
-            $("#{{$fileInputName}}-text").remove();
+            const input = document.getElementById("{{$fileInputName}}");
+            const inputText = document.getElementById(
+                "{{$fileInputName}}" + "-text"
+            );
+            $(input).show();
+            $(inputText).remove();
 
-            $("#{{$fileInputName}}").val(null);
+            $(input).val(null);
 
             $(e.target).hide();
             console.log($("#{{$fileInputName}}").val(null));
