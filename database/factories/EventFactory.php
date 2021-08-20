@@ -22,9 +22,9 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            'logo' => $this->faker->imageUrl(640, 480, 'animals', true),
+            'title' => $this->faker->word,
             'image' => $this->faker->imageUrl(640, 480, 'animals', true),
             'content' => $this->faker->sentence(),
-         ];
+        ];
     }
 }
