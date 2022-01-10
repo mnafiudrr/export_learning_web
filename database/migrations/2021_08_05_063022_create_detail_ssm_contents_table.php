@@ -19,7 +19,7 @@ class CreateDetailSsmContentsTable extends Migration
             $table->unsignedBigInteger('detail_ssm_id')->nullable();
             $table->foreign('detail_ssm_id')->references('id')->on('detail_ssm');
             $table->unsignedBigInteger('content_type_id')->nullable();
-            $table->foreign('content_type_id')->references('id')->on('content_types');
+            $table->foreign('content_type_id')->references('id')->on('content_types')->onUpdate('cascade')->onDelete('cascade');
             
             $table->text('value')->nullable();
             $table->integer('row')->nullable();
