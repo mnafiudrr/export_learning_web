@@ -65,9 +65,7 @@
                                         </td>
                                         <td>{{$submateri->created_at}}</td>
                                         <td>
-                                            <button class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm" type="button">
-                                                Hapus
-                                            </button>
+                                            <a href="{{ route('submateri.delete', $submateri->id)}}" class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

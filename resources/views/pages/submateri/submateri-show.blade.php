@@ -54,7 +54,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <button class=" d-none d-sm-inline-block shadow-sm btn-danger btn-sm" type="button">Hapus</button>
+                                            <a href="{{ route('subsubmateri.delete', $ssm->id) }}" class=" d-none d-sm-inline-block shadow-sm btn-danger btn-sm"></a>
                                         </td>
                                     </tr>
                                 @endforeach

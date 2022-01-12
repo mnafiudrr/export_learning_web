@@ -136,4 +136,11 @@ class SubSubMateriController extends Controller
         }
         return view('pages.subsubmateri.subsubmateri-show', compact('ssm'));
     }
+
+    public function delete($id)
+    {
+        $ssm = SubSubmateri::find($id);
+        $ssm->delete();
+        return redirect('/materi');
+    }
 }

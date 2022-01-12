@@ -17,9 +17,9 @@ class CreateDetailSsmContentsTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('detail_ssm_id')->nullable();
-            $table->foreign('detail_ssm_id')->references('id')->on('detail_ssm');
+            $table->foreign('detail_ssm_id')->references('id')->on('detail_ssm')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('content_type_id')->nullable();
-            $table->foreign('content_type_id')->references('id')->on('content_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('content_type_id')->references('id')->on('content_types');
             
             $table->text('value')->nullable();
             $table->integer('row')->nullable();

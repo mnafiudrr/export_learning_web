@@ -17,10 +17,10 @@ class CreateSubSubMateriContentsTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('sub_sub_materi_id')->nullable();
-            $table->foreign('sub_sub_materi_id')->references('id')->on('sub_sub_materis');
+            $table->foreign('sub_sub_materi_id')->references('id')->on('sub_sub_materis')->onUpdate('cascade')->onDelete('cascade');
 
             $table->unsignedBigInteger('content_type_id')->nullable();
-            $table->foreign('content_type_id')->references('id')->on('content_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('content_type_id')->references('id')->on('content_types');
             
             $table->text('value')->nullable();
             $table->integer('row')->nullable();

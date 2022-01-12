@@ -152,4 +152,11 @@ class MateriController extends Controller
         $contentTypes = ContentType::all();
         return view('pages.materi.materi-edit', ['materi' => $materi, 'contentTypes' => $contentTypes]);
     }
+
+    public function delete($id)
+    {
+        $materi = Materi::find($id);
+        $materi->delete();
+        return redirect('/materi');
+    }
 }

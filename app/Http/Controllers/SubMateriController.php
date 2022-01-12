@@ -131,4 +131,11 @@ class SubMateriController extends Controller
         $submateri = Submateri::with('subMateriContents')->find($id);
         return view('pages.submateri.submateri-edit', compact('submateri'));
     }
+
+    public function delete($id)
+    {
+        $submateri = Submateri::find($id);
+        $submateri->delete();
+        return redirect('/materi');
+    }
 }

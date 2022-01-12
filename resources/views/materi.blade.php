@@ -31,9 +31,7 @@
                                         <a href="{{ route('materi.show', $materi->id) }}" style="text-decoration: none">{{$materi->title}}</a>
                                     </td>
                                     <td>
-                                        <button class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm" type="button">
-                                            Hapus
-                                        </button>
+                                        <a href="{{ route('materi.delete', $materi->id) }}" class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm">Hapus</a>
                                     </td>
                                 </tr>
                             @endforeach
