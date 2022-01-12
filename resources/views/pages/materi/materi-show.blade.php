@@ -45,7 +45,7 @@
                             <thead>
                                 <tr>
                                     <th>Sub Materi</th>
-                                    <td>Dibuat pada</td>
+                                    <th>Dibuat pada</th>
                                     <th>Aksi</th>
 
                                 </tr>
@@ -53,8 +53,8 @@
                             <tfoot>
                                 <tr>
                                     <th>Sub Materi</th>
-                                    <td>Dibuat pada</td>
-                                    <th class="text text-center">Aksi</th>
+                                    <th>Dibuat Pada</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </tfoot>
                             <tbody>

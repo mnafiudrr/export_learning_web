@@ -15,13 +15,15 @@
                         <thead>
                             <tr>
                                 <th>Materi</th>
+                                <th>Dibuat pada</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Materi</th>
-                                <th class="text text-center">Aksi</th>
+                                <th>Dibuat Pada</th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -29,6 +31,9 @@
                                 <tr>
                                     <td>
                                         <a href="{{ route('materi.show', $materi->id) }}" style="text-decoration: none">{{$materi->title}}</a>
+                                    </td>
+                                    <td>
+                                        {{$materi->created_at}}
                                     </td>
                                     <td>
                                         <a href="{{ route('materi.delete', $materi->id) }}" class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm">Hapus</a>

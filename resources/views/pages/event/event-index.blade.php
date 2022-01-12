@@ -15,12 +15,14 @@
                         <thead>
                             <tr>
                                 <th>Judul Event</th>
+                                <th>Dibuat Pada</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Judul Event</th>
+                                <th>Dibuat Pada</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
@@ -32,6 +34,7 @@
                                             {{$event->title}}
                                         </a>
                                     </td>
+                                    <td>{{ $event->created_at }}</td>
                                     <td>
                                         <button onclick="deleteEvent(this)" class=" d-none d-sm-inline-block shadow-sm btn-danger btn-sm" data-evtid="{{$event->id}}" type="button">
                                             Hapus

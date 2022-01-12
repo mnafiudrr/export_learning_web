@@ -77,6 +77,8 @@ Route::prefix('detailssm')->group(
         Route::get('/create', [DetailSsmController::class, 'create'])->name('detailssm.create');
         Route::get('/{id}', [DetailSsmController::class, 'show'])->name('detailssm.show');
         Route::get('/{id}/edit', [DetailSsmController::class, 'edit'])->name('detailssm.edit');
+
+        Route::get('/{id}/delete', [DetailSsmController::class, 'delete'])->name('detailssm.delete');
     }
 );
 Route::prefix('quis')->group(

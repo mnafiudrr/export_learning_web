@@ -99,4 +99,11 @@ class DetailSsmController extends Controller
         $submateri = DetailSsm::with('detailSsmContents.contentType')->find($id);
         return view('pages.detailssm.detailssm-edit', compact('submateri'));
     }
+
+    public function delete($id)
+    {
+        $submateri = DetailSsm::find($id);
+        $submateri->delete();
+        return redirect('subsubmateri/'. $submateri->sub_sub_materi_id);
+    }
 }

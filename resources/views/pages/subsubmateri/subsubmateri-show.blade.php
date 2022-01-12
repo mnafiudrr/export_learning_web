@@ -37,13 +37,15 @@
                             <thead>
                                 <tr>
                                     <th>Detail Sub Sub Materi</th>
+                                    <th>Dibuat pada</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Detail Sub Sub Materi</th>
-                                    <th class="text text-center">Aksi</th>
+                                    <th>Dibuat pada</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -53,9 +55,10 @@
                                             <a href="{{ route('detailssm.show', $ssm->id) }}" style="text-decoration: none">{{$ssm->title}}</a>
                                         </td>
                                         <td>
-                                            <button class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm" type="button">
-                                                Hapus
-                                            </button>
+                                            {{$ssm->created_at}}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('detailssm.delete', $ssm->id) }}" class="d-none d-sm-inline-block shadow-sm btn-danger btn-sm">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -136,6 +136,6 @@ class SubMateriController extends Controller
     {
         $submateri = Submateri::find($id);
         $submateri->delete();
-        return redirect('/materi');
+        return redirect('materi/'. $submateri->materi_id);
     }
 }

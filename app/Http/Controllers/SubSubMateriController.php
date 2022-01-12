@@ -141,6 +141,6 @@ class SubSubMateriController extends Controller
     {
         $ssm = SubSubmateri::find($id);
         $ssm->delete();
-        return redirect('/materi');
+        return redirect('submateri/'. $ssm->sub_materi_id);
     }
 }

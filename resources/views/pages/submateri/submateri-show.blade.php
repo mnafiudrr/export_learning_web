@@ -36,13 +36,15 @@
                             <thead>
                                 <tr>
                                     <th>Sub Sub Materi</th>
+                                    <th>Dibuat pada</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Sub Sub Materi</th>
-                                    <th class="text text-center">Aksi</th>
+                                    <th>Dibuat pada</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -54,7 +56,10 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('subsubmateri.delete', $ssm->id) }}" class=" d-none d-sm-inline-block shadow-sm btn-danger btn-sm"></a>
+                                            {{$ssm->created_at}}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('subsubmateri.delete', $ssm->id) }}" class=" d-none d-sm-inline-block shadow-sm btn-danger btn-sm">Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach
