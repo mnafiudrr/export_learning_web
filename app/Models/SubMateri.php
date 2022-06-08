@@ -37,4 +37,24 @@ class SubMateri extends Model
     {
         return $this->hasMany('App\Models\SubSubMateri', 'sub_materi_id', 'id');
     }
+
+    public function contents()
+    {
+        return $this->hasMany(SubMateriContent::class,'sub_materi_id','id');
+    }
+
+    public function orderContents($row = 'created_at', $sort = 'asc')
+    {
+        return $this->contents()->orderBy($row, $sort)->get();
+    }
+
+    public function subs()
+    {
+        return $this->hasMany(SubSubMateri::class, 'sub_materi_id', 'id');
+    }
+
+    public function orderSubs($row = 'created_at', $sort = 'asc')
+    {
+        return $this->subs()->orderBy($row, $sort)->get();
+    }
 }

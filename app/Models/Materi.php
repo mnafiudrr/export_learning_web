@@ -17,11 +17,22 @@ class Materi extends Model
      */
 
     protected $guarded = ['id'];
+    protected $fillable = ['title', 'logo', 'header', 'number'];
+
     public function materiContents(): HasMany
     {
-        return $this->hasMany('App\Models\MateriContent', 'materi_id', 'id');
+        return $this->hasMany(MateriContent::class, 'materi_id', 'id');
     }
 
+    public function contents()
+    {
+        return $this->hasMany(MateriContent::class, 'materi_id', 'id');
+    }
+
+    public function orderContents($row = 'created_at', $sort = 'asc')
+    {
+        return $this->contents()->orderBy($row, $sort)->get();
+    }
     /**
      * Get all of the comments for the Materi
      *
@@ -29,6 +40,16 @@ class Materi extends Model
      */
     public function subMateris(): HasMany
     {
-        return $this->hasMany('App\Models\SubMateri', 'materi_id', 'id');
+        return $this->hasMany(SubMateri::class, 'materi_id', 'id');
+    }
+
+    public function subs()
+    {
+        return $this->hasMany(SubMateri::class, 'materi_id', 'id');
+    }
+
+    public function orderSubs($row = 'created_at', $sort = 'asc')
+    {
+        return $this->subs()->orderBy($row, $sort)->get();
     }
 }

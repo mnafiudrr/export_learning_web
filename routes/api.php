@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MateriApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -92,4 +93,17 @@ Route::prefix('event')->group(function () {
     Route::delete('/{id}', [EventController::class,'destroy']);
 
     Route::get('/{id}', [EventController::class,'get']);
+});
+
+Route::prefix('new')->group(function () {
+
+    Route::prefix('master')->group(function () {
+        Route::get('app-logo', [MasterController::class,'getAppLogo']);
+    });
+
+    Route::prefix('materi')->group(function () {
+        Route::get('', [MateriApiController::class,'index']);
+        Route::get('{id}', [MateriApiController::class,'show']);
+    });
+    
 });
