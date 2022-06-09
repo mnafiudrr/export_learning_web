@@ -47,7 +47,7 @@ class MasterSeeder extends Seeder
 
         DB::table('masters')->insert([
             'name' => 'APP_VIDEO',
-            'value' => 'https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png',
+            'value' => 'https://www.youtube.com/watch?v=9uwEAugeH8w',
             'desc' => 'Video Pengenalan  Aplikasi',
             'content_type_id' => 3
 

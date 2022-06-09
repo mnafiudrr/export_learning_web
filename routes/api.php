@@ -99,6 +99,7 @@ Route::prefix('new')->group(function () {
 
     Route::prefix('master')->group(function () {
         Route::get('app-logo', [MasterController::class,'getAppLogo']);
+        Route::get('dashboard-video', [MasterController::class,'dashboardVideo']);
     });
 
     Route::prefix('materi')->group(function () {

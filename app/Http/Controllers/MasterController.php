@@ -14,8 +14,16 @@ class MasterController extends Controller
     {
         $BASE_LOGO_DB_NAME = 'APP_LOGO'; // Set The 'name' Column in database to fetch app logo
         $logo = Master::where('name', $BASE_LOGO_DB_NAME)->first()->value;
-    
+        
         return response()->json($logo, 200);
+    }
+    
+    public function dashboardVideo()
+    {
+        $BASE_VIDEO_DB_NAME = 'APP_VIDEO'; // Set The 'name' Column in database to fetch app logo
+        $video = Master::where('name', $BASE_VIDEO_DB_NAME)->first()->value;
+    
+        return response()->json($video, 200);
     }
 
     public function store(CreateMasterRequest $req)
